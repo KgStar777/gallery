@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "backgroud_videos",
+  "info": {
+    "singularName": "backgroud-video",
+    "pluralName": "backgroud-videos",
+    "displayName": "BackgroudVideo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "preloader": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "paints",
+  "info": {
+    "singularName": "paint",
+    "pluralName": "paints",
+    "displayName": "PaintInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true
+    },
+    "paint_image": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::paint-image.paint-image"
+    }
+  }
+}

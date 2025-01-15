@@ -1,0 +1,112 @@
+.swiper-button-next,
+.swiper-button-prev {
+    // background-color: white;
+    // background-color: rgba(255, 255, 255, 0.5);
+    right: 10px;
+    padding: 30px;
+    color: #d0d0d0 !important;
+    fill: black !important;
+    stroke: black !important;
+}
+
+.gallery-carousel__wrapper {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 60% 1fr;
+    // gap: 2rem;
+
+    .gallery-carousel__carousel-component {
+        margin-top: 4.5rem;
+    }
+
+    .carousel-component__wrapper {
+        overflow: hidden;
+    }
+    
+    .carousel-component__item {
+        height: 80vh;
+        width: 100%;
+        position: relative;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .carousel-header {
+        position: fixed;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem;
+        z-index: 20;
+    }
+    
+    .carousel-info {
+        margin-top: 10rem;
+        // margin-bottom: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.gallery-carousel__wrapper-mobile {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .gallery-carousel__carousel-component-mobile {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        padding-top: 4rem;
+
+        .carousel-component__wrapper {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-rows: 60vh 30vh;
+        }
+    }
+
+    .carousel-header-mobile {
+        background-color: white;
+        position: fixed;
+        z-index: 20;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+    }
+
+    .carousel-component__item {
+        // height: 80vh;
+        // width: 100%;
+        position: relative;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    
+    .carousel-info-mobile {
+        // margin-top: 10rem;
+        // margin-bottom: 4rem;
+        display: flex;
+        padding: 2rem;
+        gap: 2rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}

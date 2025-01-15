@@ -1,0 +1,42 @@
+{
+  "name": "frontend-14",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^3.9.1",
+    "@types/qs": "^6.9.17",
+    "classnames": "^2.5.1",
+    "hamburger-react": "^2.5.1",
+    "lodash": "^4.17.21",
+    "next": "14.2.18",
+    "next-i18next": "^15.4.0",
+    "qs": "^6.13.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.54.0",
+    "react-multi-carousel": "^2.8.4",
+    "react-toastify": "^10.0.6",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "sass": "^1.81.0",
+    "swiper": "^11.2.1",
+    "yup": "^1.5.0",
+    "yup-phone": "^1.3.2",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

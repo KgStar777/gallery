@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "request_price_forms",
+  "info": {
+    "singularName": "request-price-form",
+    "pluralName": "request-price-forms",
+    "displayName": "Request-price-form"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullname": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}
