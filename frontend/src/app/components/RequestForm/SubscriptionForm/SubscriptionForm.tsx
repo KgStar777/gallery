@@ -8,10 +8,11 @@ import { InputField } from "../InputField";
 import { SubmitButton } from "../SubmitButton";
 import { isMobile } from "@/app/utils/isMobile";
 import { schemaSubscriptionFormResolver } from "../validation/schemaSubscriptionFormResolver";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 type SubscriptionFormModel = {
-  email: string,
   name: string,
+  email: string,
 }
 
 export function SubscriptionForm(props: {
@@ -23,7 +24,7 @@ export function SubscriptionForm(props: {
     formState: { errors },
     reset
   } = useForm<SubscriptionFormModel>({
-    resolver: schemaSubscriptionFormResolver
+    resolver: yupResolver(schemaSubscriptionFormResolver)
   })
 
   const onSubmit: SubmitHandler<SubscriptionFormModel> = async (data: SubscriptionFormModel) => {

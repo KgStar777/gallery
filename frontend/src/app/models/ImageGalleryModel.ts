@@ -82,7 +82,7 @@ export interface RequestFormFieldsModel {
     fullname: string;
     email: string;
     phone: string;
-    comment: string;
+    comment?: string;
     button: string;
     image: ImageModel;
 }
