@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
 import { AppProps } from "next/app";
-import { Rubik, Rubik_80s_Fade } from "next/font/google";
+// import { Rubik, Rubik_80s_Fade } from "next/font/google";
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Header } from "./components/Header";
@@ -45,19 +45,19 @@ const contextClass = {
   dark: "bg-white-600 font-gray-300",
 };
 
-const rubik = Rubik({
-  subsets: ['latin', 'cyrillic'],
-  display: 'swap',
-  weight: ['400', '700', '900'],
-  style: ['normal', 'italic'],
-});
+// const rubik = Rubik({
+//   subsets: ['latin', 'cyrillic'],
+//   display: 'swap',
+//   weight: ['400', '700', '900'],
+//   style: ['normal', 'italic'],
+// });
 
-const rubik80 = Rubik({
-  subsets: ['latin', 'cyrillic'],
-  display: 'swap',
-  weight: ['300', '400'],
-  style: ['normal', 'italic'],
-});
+// const rubik80 = Rubik({
+//   subsets: ['latin', 'cyrillic'],
+//   display: 'swap',
+//   weight: ['300', '400'],
+//   style: ['normal', 'italic'],
+// });
 
 export default function RootLayout({
   children,
@@ -70,7 +70,8 @@ export default function RootLayout({
         {/* <body className={`${geistSans.variable} ${geistMono.variable}`}> */}
         {/* <UserContextProvider> */}
           {/* <body className={`${rubikLight} ${rubikLightItalic} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}> */}
-          <body className={`${rubik.className} ${rubik80.className} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
+{/*           <body className={`${rubik.className} ${rubik80.className} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}> */}
+          <body className={`bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
           <ToastContainer
             // autoClose={3000}
             position={"bottom-right"}
