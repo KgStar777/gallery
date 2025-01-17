@@ -6,7 +6,6 @@ export function VideoLayout(props: {
   title: string;
   data: BackgroundVideoModel;
 }) {
-  console.log("video: ", props.data)
   return (
     <div className="relative">
       <div className="space-y-2 pt-6 pb-3 space-y-5">
