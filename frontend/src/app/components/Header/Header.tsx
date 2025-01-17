@@ -7,22 +7,27 @@ import { BurgerMenu } from "./BurgerMenu";
 import { FullMenu } from "./FullMenu";
 import { LanguageSelector } from "./LanguageSelector";
 import LangSelect from "./LangSelect";
+import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 
 const links = [
   {
-    name: "Home",
+    en: "Home",
+    ru: "Главная",
     path: "/"
   },
   {
-    name: "Contacts",
+    en: "Contacts",
+    ru: "Контакты",
     path: "/contacts"
   },
   {
-    name: "Exhibitions",
+    en: "Exhibitions",
+    ru: "Выставки",
     path: "/exhibitions"
   },
   {
-    name: "Biography",
+    en: "Biography",
+    ru: "Биография",
     path: "/biography"
   },
 ];
@@ -30,6 +35,10 @@ const links = [
 export function Header() {
   const userAgent = headers().get("user-agent") || "";
   const mobileCheck = isMobile(userAgent);
+
+  const languages = headers().get("accept-language") || "";
+
+  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
 
   return (
     <header className="header-component">
@@ -46,7 +55,7 @@ export function Header() {
                 </Link>
                 {/* <LanguageSelector /> */}
                 {/* <LangSelect /> */}
-                <BurgerMenu links={links} />
+                <BurgerMenu priorityLanguage={priorityLanguage} links={links} />
               </div>
             </Fragment>
             )
@@ -57,7 +66,7 @@ export function Header() {
                   Alyona Sychyova
                 </Link>
               </span>
-              <FullMenu links={links} />
+              <FullMenu priorityLanguage={priorityLanguage} links={links} />
             </Fragment>
           )
         }

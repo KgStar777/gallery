@@ -1,4 +1,5 @@
 export interface LinkModel {
-    name: string;
+    en: string;
+    ru: string;
     path: string;
 }

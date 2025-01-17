@@ -15,11 +15,9 @@ export default async function Home() {
   //   (state) => state,
   // );
 
-  // console.log(store);
   const languages = headers().get("accept-language") || "";
 
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
-  // const priorityLanguage = "en";
 
   const data = await getImages({ language: priorityLanguage });
   const info = await getInfo({ language: priorityLanguage });
@@ -31,7 +29,7 @@ export default async function Home() {
       {/* <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen gap-16"> */}
         <Header />
         <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          <MainPage images={data} info={info} />
+          <MainPage priorityLanguage={priorityLanguage} images={data} info={info} />
           <RequestForm formFields={form} />
         </main>
         <Footer />

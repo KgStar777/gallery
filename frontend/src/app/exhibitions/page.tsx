@@ -24,7 +24,7 @@ export default async function Exhibitions() {
 
   return (
     <Fragment>
-      <VideoLayout data={data} title={"Exhibitions"} />
+      <VideoLayout data={data} title={priorityLanguage === "ru" ? "Выставки" : "Exhibitions"} />
       <div className="flex-row w-full px-[7%] py-[2rem]">{exgibitionData?.data.map((ex, index) => {
         return (
           <div key={index} className="mt-[1.7rem]">

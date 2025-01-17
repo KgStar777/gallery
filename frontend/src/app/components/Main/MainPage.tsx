@@ -17,13 +17,15 @@ interface Meta {
 export async function MainPage({
     images,
     info,
+    priorityLanguage
 }: {
     images: ImageGalleryModel[];
     info: {
         italic: string;
         article1: string;
         article2: string;
-    }
+    };
+    priorityLanguage: string;
 }) {
     const userAgent = headers().get("user-agent") || "";
     const mobileCheck = isMobile(userAgent);
@@ -37,7 +39,7 @@ export async function MainPage({
                     {/* <Image src={Author} alt="author" /> */}
                 </div>
                 <div className="main-content">
-                    <h1 className="font-sans md:font-serif">Alyona Sychyova</h1>
+                    <h1 className="font-sans md:font-serif">{priorityLanguage === "ru" ? "Алёна Сычёва" : "Alyona Sychyova"}</h1>
                     {/* <div className="subtitle">
                         <span>Portfolio</span>
                         <span>|</span>

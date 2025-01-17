@@ -9,6 +9,7 @@ import { ContactsLinks } from '../../ContactsLinks';
 
 interface IBurgerMenuProps {
   links: Array<LinkModel>;
+  priorityLanguage: string;
 }
 
 export function BurgerMenu(props: IBurgerMenuProps) {
@@ -47,8 +48,11 @@ export function BurgerMenu(props: IBurgerMenuProps) {
                   key={idx}
                   className={isActiveLink(link.path) ? 'active' : ''}
                   href={link.path}
-                >
-                  {link.name}
+                >{
+                  props.priorityLanguage === "ru"
+                    ? link.ru
+                    : link.en
+                  }
                 </Link>
               ))}
               <div className="burger-menu__mobile-contacts">

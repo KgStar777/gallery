@@ -5,10 +5,11 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 // import { LanguageSelector } from "./LanguageSelector";
 import { ContactsLinks } from "@/app/components/ContactsLinks";
-import LangSelect from "./LangSelect";
+// import LangSelect from "./LangSelect";
 
 interface IFullMenuProps {
   links: Array<LinkModel>;
+  priorityLanguage: string;
 }
 
 export function FullMenu(props: IFullMenuProps) {
@@ -20,7 +21,11 @@ export function FullMenu(props: IFullMenuProps) {
     <ul>
       {props.links?.map((link, idx) => (
         <li key={idx}>
-          <Link className={isActiveLink(link.path) ? 'active' : ''} href={link.path}>{link.name}</Link>
+          <Link className={isActiveLink(link.path) ? 'active' : ''} href={link.path}>{
+            props.priorityLanguage === "ru"
+            ? link.ru
+            : link.en
+          }</Link>
         </li>
       ))}
     </ul>

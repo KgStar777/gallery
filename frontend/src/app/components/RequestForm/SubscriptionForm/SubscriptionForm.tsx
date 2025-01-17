@@ -16,7 +16,8 @@ type SubscriptionFormModel = {
 }
 
 export function SubscriptionForm(props: {
-  isMobile: boolean,
+  isMobile: boolean
+  priorityLanguage: string
 }) {
   const {
     register,
@@ -49,7 +50,7 @@ export function SubscriptionForm(props: {
 
   return (
     <section className="subscription-form-section">
-      <h3>Subscribe to news</h3>
+      <h3>{props.priorityLanguage === "ru" ? "Подписаться на новости" : "Subscribe to news"}</h3>
       <form
         className={"subscription-form"
           // props.isMobile
@@ -81,7 +82,7 @@ export function SubscriptionForm(props: {
           : ( */}
             <div className="subscription-form__fields">
               <InputField
-                placeholder={"Name"}
+                placeholder={props.priorityLanguage === "ru" ? "Имя" : "Name"}
                 title="full name"
                 type="text"
                 register={register}
@@ -89,7 +90,7 @@ export function SubscriptionForm(props: {
                 error={get(errors, "name")?.message}
               />
               <InputField
-                placeholder={"Email"}
+                placeholder={props.priorityLanguage === "ru" ? "Почта" : "Email"}
                 title="e-mail"
                 type="email"
                 register={register}
@@ -99,7 +100,7 @@ export function SubscriptionForm(props: {
             </div>
           {/* )
         } */}
-        <SubmitButton>{"subscribe"}</SubmitButton>      
+        <SubmitButton>{props.priorityLanguage === "ru" ? "Подписаться" : "subscribe"}</SubmitButton>      
       </form>
     </section>
   )

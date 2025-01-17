@@ -16,6 +16,7 @@ import { FormWrapper } from "./FormWrapper";
 export function Form(props: {
   formFields: RequestFormFieldsModel
   isMobile: boolean
+  priorityLanguage: string
 }) {
   const {
     register,
@@ -49,69 +50,33 @@ export function Form(props: {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="request-form">
       <InputField
-        placeholder="Name"
+        placeholder={props.priorityLanguage === "ru" ? "Имя" : "Name"}
         type="text"
         register={register}
         name="fullname"
         error={get(errors, "fullname")?.message}
       />
       <InputField
-        placeholder={"E-mail"}
+        placeholder={props.priorityLanguage === "ru" ? "Почта" : "E-mail"}
         type="email"
         register={register}
         name="email"
         error={get(errors, "email")?.message}
       />
       <InputField
-        placeholder={"Phone number"}
+        placeholder={props.priorityLanguage === "ru" ? "Номер телефона" : "Phone number"}
         type="string"
         register={register}
         name="phone"
         error={get(errors, "phone")?.message}
       />
       <TextareaField
-        placeholder={"Comment"}
+        placeholder={props.priorityLanguage === "ru" ? "Комментарий" : "Comment"}
         register={register}
         name="comment"
         error={get(errors, "comment")?.message}
       />
       <SubmitButton>{props.formFields.button}</SubmitButton>
-    </form>
-    // <FormWrapper
-    //   isMobile={props.isMobile}
-    //   orientation="vertical"
-    //   onSubmit={handleSubmit(onSubmit)}
-    //   header={"Send a request"}
-    //   submitButton={<SubmitButton>{props.formFields.button}</SubmitButton>}
-    // >
-    //   <InputField
-    //     placeholder="Name"
-    //     type="text"
-    //     register={register}
-    //     name="fullname"
-    //     error={get(errors, "fullname")?.message}
-    //   />
-    //   <InputField
-    //     placeholder={"E-mail"}
-    //     type="email"
-    //     register={register}
-    //     name="email"
-    //     error={get(errors, "email")?.message}
-    //   />
-    //   <InputField
-    //     placeholder={"Phone number"}
-    //     type="string"
-    //     register={register}
-    //     name="phone"
-    //     error={get(errors, "phone")?.message}
-    //   />
-    //   <TextareaField
-    //     placeholder={"Comment"}
-    //     register={register}
-    //     name="comment"
-    //     error={get(errors, "comment")?.message}
-    //   />
-    // </FormWrapper>
-    
+    </form> 
   )
 }

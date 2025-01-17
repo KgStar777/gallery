@@ -6,13 +6,17 @@ import { SubscriptionForm } from "../RequestForm/SubscriptionForm";
 import { isMobile } from "@/app/utils/isMobile";
 
 import "./Footer.scss";
+import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 
 export function Footer() {
     const userAgent = headers().get("user-agent") || "";
     const mobileCheck = isMobile(userAgent);
+    const languages = headers().get("accept-language") || "";
+
+    const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
 return (
     <Fragment>
-        <SubscriptionForm isMobile={mobileCheck} />
+        <SubscriptionForm priorityLanguage={priorityLanguage} isMobile={mobileCheck} />
         <footer className="footer">
             <div>©2019-2025</div>
             <ContactsLinks />

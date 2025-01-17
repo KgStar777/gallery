@@ -25,7 +25,7 @@ export default async function Biography() {
   const contentHtml = processedContent.toString();
   return (
     <Fragment>
-      <VideoLayout data={data} title={"Biography"} />
+      <VideoLayout data={data} title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
       {/* <div dangerouslySetInnerHTML={{ __html: props.bio }} /> */}
       
       {/* <div className="flex-row w-full px-[7%] py-[2rem]">{exgibitionData?.data.map((ex) => {
