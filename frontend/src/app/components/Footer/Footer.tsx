@@ -19,7 +19,9 @@ return (
         <SubscriptionForm priorityLanguage={priorityLanguage} isMobile={mobileCheck} />
         <footer className="footer">
             <div>©2019-2025</div>
-            <ContactsLinks />
+            <div className="flex space-x-5">
+                <ContactsLinks priorityLanguage={priorityLanguage} />
+            </div>
         </footer>
     </Fragment>
 )}

@@ -15,7 +15,6 @@ export function ContactsInfo({
   data: ContactsInfoModel
 }) {
   const userAgent = headers().get("user-agent") || "";
-  
   return (
     <Fragment>
       <section className="contacts-section">

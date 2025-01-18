@@ -55,8 +55,8 @@ export function BurgerMenu(props: IBurgerMenuProps) {
                   }
                 </Link>
               ))}
-              <div className="burger-menu__mobile-contacts">
-                <ContactsLinks />
+              <div className="burger-menu__mobile-contacts flex space-x-5">
+                <ContactsLinks priorityLanguage={props.priorityLanguage} />
               </div>
             </nav>
           )

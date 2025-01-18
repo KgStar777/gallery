@@ -1,20 +1,18 @@
 "use client"
+
 import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ContactsLinks } from "../ContactsLinks";
 
-const shareLinks = {
-    telegram: "",
-    instagram: "",
-    pinterest: "",
-    vk: "",
-    email: "",
+interface ICarouselHeaderProps {
+    priorityLanguage: string;
+    isMobile: boolean;
 }
 
 export function CarouselHeader({
-    isMobile
-}: {
-    isMobile: boolean
-}) {
+    isMobile,
+    priorityLanguage
+}:ICarouselHeaderProps) {
     const [isVisible, setIsVisible] = useState(false);
 
     const modalRef = useRef<null | HTMLDivElement>(null)
@@ -26,30 +24,31 @@ export function CarouselHeader({
     const closeModal = () => {
         setIsVisible(false);
     }
+
     
-    // const handleOutsideClick = (event: MouseEvent) => {
-    //     if (modalRef.current && modalRef.current.contains(event.target as Node)) {
-    //         closeModal()
-    //     }
-    // }
+    const handleOutsideClick = (event: MouseEvent) => {
+        if (modalRef.current && modalRef.current.contains(event.target as Node)) {
+            closeModal()
+        }
+    }
 
-    // useEffect(() => {
-    //     if (isVisible) {
-    //         document.addEventListener("mousedown", handleOutsideClick)
-    //     }
+    useEffect(() => {
+        if (isVisible) {
+            document.addEventListener("mousedown", handleOutsideClick)
+        }
 
-    //     return () => {
-    //         document.removeEventListener("mousedown", handleOutsideClick)
-    //     }
-    // }, [])
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick)
+        }
+    }, [isVisible, handleOutsideClick])
 
     const ShareComponent = () => {
         return (
-            <div className="relative">
+            <div ref={modalRef} className="relative">
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div ref={modalRef} className="relative bg-white p-6 rounded-md w-80">
+                    <div className="relative bg-white p-6 rounded-md w-80">
                         <div>
-                            <h2 className="text-lg font-semibold mb-4">Share this link</h2>
+                            <h2 className="text-lg font-semibold mb-4">Контакты</h2>
                             <button
                                 onClick={closeModal}
                                 className="absolute top-3 right-3"
@@ -60,49 +59,7 @@ export function CarouselHeader({
                             </button>
                         </div>
                         <div className="flex flex-row items-center justify-center gap-5">
-                            <a
-                                href={shareLinks.telegram}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-500 hover:underline"
-                            >
-                                <img src="https://cdn3.iconfinder.com/data/icons/social-icons-33/512/Telegram-32.png" />
-                                {/* Share on Telegram */}
-                            </a>
-                            <a
-                                href={shareLinks.instagram}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-pink-500 hover:underline"
-                            >
-                                <img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/62-instagram-32.png" />
-                                {/* Share on Instagram */}
-                            </a>
-                            <a
-                                href={shareLinks.pinterest}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-red-500 hover:underline"
-                            >
-                                <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/pinterest-32.png" />
-                                {/* Share on Pinterest */}
-                            </a>
-                            <a
-                                href={shareLinks.vk}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-700 hover:underline"
-                            >
-                                <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-facebook_-32.png" />
-                                {/* Share on Facebook */}
-                            </a>
-                            <a
-                                href={shareLinks.email}
-                                className="text-gray-700 hover:underline"
-                            >
-                                <img src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_read_email-32.png" />
-                                {/* Share via Email */}
-                            </a>
+                            <ContactsLinks priorityLanguage={priorityLanguage} />
                         </div>
                     </div>
                 </div>

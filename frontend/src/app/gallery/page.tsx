@@ -20,10 +20,10 @@ export default async function Gallery({
   const userAgent = headers().get("user-agent") || "";
   const languages = headers().get("accept-language") || "";
   
-  const priorityLanguage = getProprityLanguages(languages, ["en", "ru"])
+  const priorityLanguage = getProprityLanguages(languages, ["en", "ru"])  ?? "en"
 
   const images = await getImages({
-    language: priorityLanguage ?? "en",
+    language: priorityLanguage,
   });
 
   return (
@@ -32,7 +32,7 @@ export default async function Gallery({
         isMobile={isMobile(userAgent)}
         images={images}
         navigationHeader={(
-          <CarouselHeader isMobile={isMobile(userAgent)} />
+          <CarouselHeader priorityLanguage={priorityLanguage} isMobile={isMobile(userAgent)} />
         )}
       />
   )

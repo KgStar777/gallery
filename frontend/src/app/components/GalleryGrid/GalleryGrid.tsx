@@ -46,7 +46,6 @@ export function GalleryGrid({
           return (
             <div key={index}>
               {(columnNode as Array<ImageGalleryModel>).map((image, pindex) => {
-                console.log("image: ", image);
                 return (
                   // <Link key={pindex} href={image.documentId}>
                   <Link key={pindex} href={`/gallery?id=${image.documentId}`}>

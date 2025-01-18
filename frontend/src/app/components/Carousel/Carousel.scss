@@ -1,3 +1,17 @@
+.swiper-slide {
+    background-color: transparent !important;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+.swiper-container {
+    background-color: black;
+  }
+
 .swiper-button-next,
 .swiper-button-prev {
     // background-color: white;
@@ -12,7 +26,7 @@
 .gallery-carousel__wrapper {
     display: grid;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     grid-template-columns: 60% 1fr;
     // gap: 2rem;
 
@@ -47,6 +61,8 @@
     }
     
     .carousel-info {
+        margin-left: 1rem;
+        margin-right: 1rem;
         margin-top: 10rem;
         // margin-bottom: 4rem;
         display: flex;

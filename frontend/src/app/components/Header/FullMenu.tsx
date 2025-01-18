@@ -32,7 +32,7 @@ export function FullMenu(props: IFullMenuProps) {
     <ul>
       {/* <LangSelect /> */}
       {/* <LanguageSelector /> */}
-      <ContactsLinks />
+      <ContactsLinks priorityLanguage={props.priorityLanguage} />
     </ul>
   </nav>
   )
