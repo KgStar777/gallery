@@ -13,7 +13,7 @@ export default async function Biography() {
   const languages = headers().get("accept-language") || "";
 
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
-  const data: BackgroundVideoModel = await getBackgroundVideo();
+  // const data: BackgroundVideoModel = await getBackgroundVideo();
   const bio = await getBiography({
     language: priorityLanguage
   });
@@ -25,7 +25,8 @@ export default async function Biography() {
   const contentHtml = processedContent.toString();
   return (
     <Fragment>
-      <VideoLayout data={data} title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
+      {/* <VideoLayout data={data} title={priorityLanguage === "ru" ? "Биография" : "Biography"} /> */}
+      <VideoLayout title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
       {/* <div dangerouslySetInnerHTML={{ __html: props.bio }} /> */}
       
       {/* <div className="flex-row w-full px-[7%] py-[2rem]">{exgibitionData?.data.map((ex) => {

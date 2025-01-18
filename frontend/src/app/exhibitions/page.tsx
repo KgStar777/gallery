@@ -11,7 +11,7 @@ export default async function Exhibitions() {
   const languages = headers().get("accept-language") || "";
 
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
-  const data: BackgroundVideoModel = await getBackgroundVideo();
+  // const data: BackgroundVideoModel = await getBackgroundVideo();
   const exgibitionData: {
     data: Array<{
       year: string;
@@ -24,7 +24,7 @@ export default async function Exhibitions() {
 
   return (
     <Fragment>
-      <VideoLayout data={data} title={priorityLanguage === "ru" ? "Выставки" : "Exhibitions"} />
+      <VideoLayout title={priorityLanguage === "ru" ? "Выставки" : "Exhibitions"} />
       <div className="flex-row w-full px-[7%] py-[2rem]">{exgibitionData?.data.map((ex, index) => {
         return (
           <div key={index} className="mt-[1.7rem]">

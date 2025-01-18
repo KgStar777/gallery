@@ -110,7 +110,10 @@ export function Carousel({
             {
               images?.length > 0 && images.map((img, idx) => {
                 return (
-                  <SwiperSlide key={img.id}>
+                  <SwiperSlide
+                    // lazy={img.id !== currentImgId ? true : false}
+                    key={img.id}
+                  >
                   {/* <SwiperSlide key={idx}> */}
                     <article
                       key={idx}
@@ -150,6 +153,7 @@ export function Carousel({
               slidePrevClass="custom-prev"
               slideNextClass="custom-bext"
               ref={swiperRef}
+              // modules={[Laz]}
               onSlideChange={(s) => {
                 setCurrentImgId(s.activeIndex)
               }}
@@ -159,7 +163,10 @@ export function Carousel({
               images?.length > 0 && images.map((img, idx) => {
                 return (
                   <>
-                    <SwiperSlide key={img.id}>
+                    <SwiperSlide
+                      lazy={true}
+                      key={img.id}
+                    >
                     {/* <SwiperSlide key={idx}> */}
                       <article
                         key={idx}
