@@ -52,11 +52,12 @@ export async function MainPage({
                 </div>
             </section>
             <section className='gallery-wrapper__mobile'>
-                <GalleryGrid rowsCount={1} data={images} />
+                <GalleryGrid rowsCount={1} data={images} isMobile={true} />
             </section>
         </Fragment>
         )
     }
+
     return (
         <Fragment>
             <section className={"main-page"}>
