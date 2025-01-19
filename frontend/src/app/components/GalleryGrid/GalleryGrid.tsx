@@ -4,17 +4,19 @@ import { Suspense } from 'react';
 
 import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
+import { isEmpty } from 'lodash';
 
 
 interface IGalleryProps {
-    data: Array<ImageGalleryModel>,
+    data: Array<ImageGalleryModel>;
     rowsCount?: number;
+    isMobile?: boolean;
 }
-
 
 export function GalleryGrid({
   data,
   rowsCount = 3,
+  isMobile
 }: IGalleryProps) {
   const columnNodes = Array.from({ length: rowsCount }, () => []);
 
@@ -33,20 +35,21 @@ export function GalleryGrid({
   return (
     <Suspense>
       <div className="gallery-box">
-        {columnNodes.map((columnNode, index) => {
+        {columnNodes.map((columnNode, index) => { 
           return (
             <div key={index}>
               {(columnNode as Array<ImageGalleryModel>).map((image, pindex) => {
+                const paint = isMobile ? image.Paint?.formats?.small : image.Paint?.formats?.medium
                 return (
                   // <Link key={pindex} href={image.documentId}>
                   <Link key={pindex} href={`/gallery?id=${image.documentId}`}>
                     <div key={image.id} className="image-wrapper">
-                      {image.Paint !== null && (
+                      {!isEmpty(paint) && (
                         <Image
-                            src={getStrapiURL(image.Paint?.url)}
+                            src={getStrapiURL(paint?.url)}
                             alt={image.Title}
-                            width={image.Paint?.width}
-                            height={image.Paint?.height}
+                            width={paint?.width}
+                            height={paint?.height}
                             // fill
                             // placeholder="blur"
                             loading="lazy"
