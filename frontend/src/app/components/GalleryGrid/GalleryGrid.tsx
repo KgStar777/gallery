@@ -1,12 +1,3 @@
-// import LightGallery from 'lightgallery/react';
-
-// import lgZoom from 'lightgallery/plugins/zoom';
-// import lgShare from 'lightgallery/plugins/share';
-// import lgHash from 'lightgallery/plugins/hash';
-
-// import imagesLoaded from 'imagesloaded';
-// import Masonry from 'masonry-layout';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react'; 
@@ -50,17 +41,18 @@ export function GalleryGrid({
                   // <Link key={pindex} href={image.documentId}>
                   <Link key={pindex} href={`/gallery?id=${image.documentId}`}>
                     <div key={image.id} className="image-wrapper">
-                      <Image
-                          // src={"http://localhost:1337" + image.Paint.url}
-                          src={getStrapiURL(image.Paint.url)}
-                          alt={image.Title}
-                          width={image.Paint.width}
-                          height={image.Paint.height}
-                          // fill
-                          // placeholder="blur"
-                          loading="lazy"
-                          className="h-full w-full max-w-full"
-                      />
+                      {image.Paint !== null && (
+                        <Image
+                            src={getStrapiURL(image.Paint?.url)}
+                            alt={image.Title}
+                            width={image.Paint?.width}
+                            height={image.Paint?.height}
+                            // fill
+                            // placeholder="blur"
+                            loading="lazy"
+                            className="h-full w-full max-w-full"
+                        />
+                      )}
                       <div className="image-info">
                           <h5>{image.Title}</h5>
                           <p>{image.Description[0].children[0].text}</p>
