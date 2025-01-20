@@ -5,8 +5,8 @@ import { headers } from "next/headers";
 import { Fragment } from "react";
 import { BurgerMenu } from "./BurgerMenu";
 import { FullMenu } from "./FullMenu";
-import { LanguageSelector } from "./LanguageSelector";
-import LangSelect from "./LangSelect";
+// import { LanguageSelector } from "./LanguageSelector";
+// import LangSelect from "./LangSelect";
 import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 
 const links = [
@@ -40,36 +40,38 @@ export function Header() {
 
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
 
+  const MenuNode = () => {
+    if (mobileCheck) {
+      return (
+        <Fragment>
+          <div className="header-component__mobile">
+            <Link href="">
+              <h1 className="text-2xl font-medium">
+              <span className="text-white bg-teal-500 p-1 border-teal-500 font-bold me-2">{String("АЛЁНА").toUpperCase()}</span>
+              Сычёва <span className="text-teal-500">{}</span>
+              </h1>
+            </Link>
+            {/* <LanguageSelector /> */}
+            {/* <LangSelect /> */}
+            <BurgerMenu priorityLanguage={priorityLanguage} links={links} />
+          </div>
+        </Fragment>
+      )}
+    return (
+      <Fragment>
+        <span className="header-name">
+          <Link href="/">
+            Alyona Sychyova
+          </Link>
+        </span>
+        <FullMenu priorityLanguage={priorityLanguage} links={links} />
+      </Fragment>
+    )
+  }
+
   return (
     <header className="header-component">
-      {
-        mobileCheck
-          ? (
-            <Fragment>
-              <div className="header-component__mobile">
-                <Link href="">
-                  <h1 className="text-2xl font-medium">
-                  <span className="text-white bg-teal-500 p-1 border-teal-500 font-bold me-2">{String("АЛЁНА").toUpperCase()}</span>
-                  Сычёва <span className="text-teal-500">{}</span>
-                  </h1>
-                </Link>
-                {/* <LanguageSelector /> */}
-                {/* <LangSelect /> */}
-                <BurgerMenu priorityLanguage={priorityLanguage} links={links} />
-              </div>
-            </Fragment>
-            )
-          : (
-            <Fragment>
-              <span className="header-name">
-                <Link href="/">
-                  Alyona Sychyova
-                </Link>
-              </span>
-              <FullMenu priorityLanguage={priorityLanguage} links={links} />
-            </Fragment>
-          )
-        }
+      <MenuNode />
     </header>
   )
 }

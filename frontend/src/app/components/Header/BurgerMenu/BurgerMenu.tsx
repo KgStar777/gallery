@@ -32,7 +32,7 @@ export function BurgerMenu(props: IBurgerMenuProps) {
 
     return (
       <Fragment>
-        <Hamburger toggled={isOpen} toggle={burgerHandelr} />
+        <Hamburger color="black" toggled={isOpen} toggle={burgerHandelr} />
         {
           isOpen && (
             <nav
