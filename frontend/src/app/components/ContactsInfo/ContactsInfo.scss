@@ -1,6 +1,8 @@
 .contacts-section {
     // width: 100%;
-    max-height: min-content;
+    // max-height: min-content;
+    height: min-content;
+    max-height: 280px;
     // background: white;
     display: flex;
     flex-direction: row;
@@ -76,7 +78,8 @@
     .paints-interiors__paints {
         width: 100%;
         height: fit-content;
-        max-height: min-content;
+        max-height: 420px;
+        // max-height: min-content;
         display: flex;
         justify-content: center;
         flex-direction: row;

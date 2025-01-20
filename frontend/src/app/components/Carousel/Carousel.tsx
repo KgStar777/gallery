@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactNode, useRef, useState } from 'react'; 
+import React, { ReactNode, useCallback, useRef, useState } from 'react'; 
 import Image from 'next/image';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -48,18 +48,18 @@ export function Carousel({
   const swiperRef = useRef<SwiperRef>(null);
 
   // Переход к следующему слайду
-  const goNext = () => {
+  const goNext = useCallback(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
     }
-  };
+  }, [swiperRef.current]);
 
   // Переход к предыдущему слайду
-  const goPrev = () => {
+  const goPrev = useCallback(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slidePrev();
     }
-  };
+  }, [swiperRef.current]);
 
   const BackIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ export function Carousel({
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke={
-        currentImgId === images.length - 1
+        currentImgId === images?.length - 1
           ? "#808080"
           : "currentColor"
       }
@@ -164,7 +164,7 @@ export function Carousel({
                 return (
                   <>
                     <SwiperSlide
-                      lazy={true}
+                      // lazy={true}
                       key={img.id}
                     >
                     {/* <SwiperSlide key={idx}> */}
@@ -187,10 +187,14 @@ export function Carousel({
                   </>
                 )})
               }
-            <div className="w-full flex flex-row items-center justify-center gap-8 mt-6">
-              <button className="custom-prev" onClick={goPrev}><BackIcon /></button>
-              <button className="custom-next" onClick={goNext}><NextIcon /></button>
-            </div>
+              {
+                images.length > 1 && (
+                  <div className="w-full flex flex-row items-center justify-center gap-8 mt-6">
+                    <button className="custom-prev" onClick={goPrev}><BackIcon /></button>
+                    <button className="custom-next" onClick={goNext}><NextIcon /></button>
+                  </div>
+                )
+              }
           </Swiper>
         </>
         
