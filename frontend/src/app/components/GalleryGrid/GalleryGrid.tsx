@@ -39,7 +39,7 @@ export function GalleryGrid({
           return (
             <div key={index}>
               {(columnNode as Array<ImageGalleryModel>).map((image, pindex) => {
-                const paint = isMobile ? image.Paint?.formats?.small : image.Paint?.formats?.medium
+                const paint = isMobile ? image.Paint?.formats?.medium : image.Paint?.formats?.large
                 return (
                   // <Link key={pindex} href={image.documentId}>
                   <Link key={pindex} href={`/gallery?id=${image.documentId}`}>
