@@ -12,21 +12,24 @@ export function Paints({
   if (isMobile) {
     return (
       <div className="paints-interiors__paints-mobile">
-        {paints.paints.map((paint, idx) => (
-        <div key={idx} className="paint-wrapper">
-          <Image
-            loading="lazy"
-            width={paint.width}
-            height={paint.height}
-            src={getStrapiURL(paint.url)}
-            alt="Image of the project"
-            className="object-cover w-full h-full mx-auto"
-          />
-          <div className="paint-info absolute">
-            {/* <h4>ывапроыавполва</h4> */}
-          </div>
-        </div>
-      ))}
+        {paints.paints.map((paint, idx) => {
+          const image = paint.formats?.medium ?? paint.formats?.large ?? paint
+          return (
+            <div key={idx} className="paint-wrapper">
+              <Image
+                loading="lazy"
+                width={image.width}
+                height={image.height}
+                src={getStrapiURL(image.url)}
+                alt="Image of the project"
+                className="object-cover w-full h-full mx-auto"
+              />
+              <div className="paint-info absolute">
+                {/* <h4>ывапроыавполва</h4> */}
+              </div>
+            </div>
+          )}
+        )}
     </div>
     )
   }

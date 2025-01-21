@@ -16,6 +16,7 @@
 
         img {
             width: 100%;
+            max-height: 580px;
             overflow: hidden;
             background-position: bottom;
             object-fit: cover;
@@ -64,7 +65,6 @@
     margin: 2rem 7%;
 
     .main-page__author {
-        max-height: 260px;
         display: flex;
         align-items: flex-start;
         box-sizing: border-box;
@@ -72,6 +72,7 @@
 
         img {
             width: 100%;
+            max-height: 260px;
             overflow: hidden;
             background-position: bottom;
             object-fit: cover;

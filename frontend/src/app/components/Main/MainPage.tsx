@@ -83,10 +83,10 @@ export async function MainPage({
                             ? "Алёна Сычёва"
                             : "Alyona Sychyova"
                     }</h1>
-                    <p className="italic font-light">{info.italic}</p>
+                    <p className="italic font-light font-sans">{info.italic}</p>
                     <hr />
-                    <p className="font-light text-slate-700 text-sm font-sans">{info.article1}</p>
-                    <p className="font-light text-slate-700 text-sm font-sans">{info.article2}</p>
+                    <p className="text-slate-700 text-sm font-sans">{info.article1}</p>
+                    <p className="text-slate-700 text-sm font-sans">{info.article2}</p>
                 </div>
             </section>
             <section className='gallery-wrapper'>

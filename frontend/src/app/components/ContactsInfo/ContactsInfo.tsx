@@ -23,7 +23,7 @@ export function ContactsInfo({
             <p>
               <Link href={`tel:${data.phone}`}>{data.phone}</Link>
             </p>
-            <p>
+            <p className="font-light text-slate-700 text-sm font-sans">
               <Link href={`mailto:${data.email}`}>{data.email}</Link>
             </p>
           </div>
