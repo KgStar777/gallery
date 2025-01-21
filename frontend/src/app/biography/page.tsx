@@ -1,49 +1,41 @@
-import { VideoLayout } from "../components/VideoLayout";
-import { BackgroundVideoModel } from "@/app/models/ImageGalleryModel";
-import { getBackgroundVideo } from "@/app/services/imageService";
 import { headers } from "next/headers";
 import { Fragment } from "react";
-import { remark } from 'remark';
-import html from 'remark-html';
-import { getProprityLanguages } from "../utils/getProprityLanguages";
-import { getBiography } from "../services/pageService";
+import { isEmpty } from "lodash";
+
+import { VideoLayout } from "@/app/components/VideoLayout";
+import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
+import { getBiography } from "@/app/services/pageService";
+import { isMobile } from "@/app/utils/isMobile";
+import { getBackgroundVideo } from "@/app/services/imageService";
+import { BackgroundVideoModel } from "@/app/models/ImageGalleryModel";
 
 
 export default async function Biography() {
+    const userAgent = headers().get("user-agent") || "";
   const languages = headers().get("accept-language") || "";
-
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
-  // const data: BackgroundVideoModel = await getBackgroundVideo();
   const bio = await getBiography({
-    language: priorityLanguage
+    language: priorityLanguage,
   });
-
+    // const data: BackgroundVideoModel = await getBackgroundVideo();
   // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html);
+  // const processedContent = await remark()
+  //   .use(html);
 
-  const contentHtml = processedContent.toString();
+  // const contentHtml = processedContent.toString();
   return (
     <Fragment>
-      {/* <VideoLayout data={data} title={priorityLanguage === "ru" ? "Биография" : "Biography"} /> */}
-      <VideoLayout title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
+      <VideoLayout isMobile={isMobile(userAgent)} title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
       {/* <div dangerouslySetInnerHTML={{ __html: props.bio }} /> */}
-      
-      {/* <div className="flex-row w-full px-[7%] py-[2rem]">{exgibitionData?.data.map((ex) => {
-        return (
-          <div className="mt-[1.7rem]">
-            <h4 className="font-medium text-lg">{ex.year}:</h4>
-            {!ex.description.length
-            ? null
-            : filter(ex.description?.split("-"), size).map(d => {
-              return (
-                <p className="font-light">- {d as string}</p>
-                )
-              })
-            }
-          </div>
+      <div className="flex-row w-full px-[7%] py-[2rem]">{
+        (bio.data?.Description as string)
+          .split("\n")
+          .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
+          .map((d) => (
+            <p className="font-light mb-4">{d}</p>
+          )
         )
-      })}</div> */}
+      }</div>
     </Fragment>
   );
 }  

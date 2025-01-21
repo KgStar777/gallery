@@ -7,6 +7,7 @@ import { BackgroundVideoModel } from "@/app/models/ImageGalleryModel";
 export function VideoLayout(props: {
   title: string;
   data?: BackgroundVideoModel;
+  isMobile: boolean;
 }) {
   return (
     <div className="relative">
@@ -22,7 +23,7 @@ export function VideoLayout(props: {
         {/* <img src={myGif.src} alt="Пример GIF" /> */}
       </div>
       <div className="relative">
-        <BackgroundVideo data={props.data} />
+        <BackgroundVideo isMobile={props.isMobile} data={props.data} />
         {/* <div className="top-0 left-0 absolute bg-gradient-to-b from-transparent to-white w-[100%] h-[100%]"></div> */}
         {/* <div className="top-0 left-0 absolute bg-gradient-to-b from-transparent via-transparent via-60% to-white w-[100%] h-[100%]"></div> */}
       </div>

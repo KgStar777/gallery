@@ -109,6 +109,7 @@ export function Carousel({
           >
             {
               images?.length > 0 && images.map((img, idx) => {
+                const paint = img.Paint?.formats?.large ?? img.Paint;
                 return (
                   <SwiperSlide
                     // lazy={img.id !== currentImgId ? true : false}
@@ -121,17 +122,19 @@ export function Carousel({
                     >
                       <div className="carousel-component__item">
                         <Image
-                          src={getStrapiURL(img.Paint.url)}
+                          // src={getStrapiURL(img.Paint.url)}
+                          src={getStrapiURL(paint.url)}
                           alt="Image of the project"
-                          width={img.Paint.width}
-                          height={img.Paint.height}
+                          // width={img.Paint.width}
+                          width={paint.width}
+                          height={paint.height}
                           loading="lazy"
                           className={`h-full w-full max-w-full`}
                         />
                       </div>
                       <div className="carousel-info-mobile">
                         <h2>{img.Title}</h2>
-                        <p>{img.Description[0].children[0].text}</p>
+                        <p className="font-light text-slate-700 text-sm font-sans">{img.Description[0].children[0].text}</p>
                       </div>
                     </article>
                   </SwiperSlide>
@@ -161,6 +164,7 @@ export function Carousel({
               slidesPerView={1}
             >{
               images?.length > 0 && images.map((img, idx) => {
+                const paint = img.Paint?.formats?.large ?? img.Paint;
                 return (
                   <>
                     <SwiperSlide
@@ -174,10 +178,13 @@ export function Carousel({
                       >
                         <div className="carousel-component__item">
                           <Image
-                            src={getStrapiURL(img.Paint.url)}
+                            // src={getStrapiURL(img.Paint.url)}
+                            src={getStrapiURL(paint.url)}
                             alt="Image of the project"
-                            width={img.Paint.width}
-                            height={img.Paint.height}
+                            // width={img.Paint.width}
+                            width={paint.width}
+                            // height={img.Paint.height}
+                            height={paint.height}
                             loading="lazy"
                             className="h-full w-full max-w-full"
                           />
@@ -202,7 +209,7 @@ export function Carousel({
         {currentImgId !== null && (
           <div className="carousel-info">
                 <h2>{images[currentImgId].Title}</h2>
-                <p>{images[currentImgId].Description[0].children[0].text}</p>
+                <p className="font-light text-slate-700 text-sm font-sans">{images[currentImgId].Description[0].children[0].text}</p>
               </div>
         )}
     </section>

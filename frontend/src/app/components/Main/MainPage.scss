@@ -2,8 +2,25 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    height: fit-content;
     margin: 2rem 10%;
     gap: 2rem;
+
+    &__author {
+        // max-height: 380px;
+        max-height: min-content;
+        display: flex;
+        align-items: flex-start;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            overflow: hidden;
+            background-position: bottom;
+            object-fit: cover;
+        }
+    }
 
     .main-content {
         display: flex;
@@ -13,7 +30,7 @@
 
         h1 {
             font-weight: 400;
-            font-size: 4rem;
+            font-size:3.4rem;
         }
 
         .subtitle {
@@ -42,20 +59,36 @@
 
 .main-page__mobile {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin: 2rem 7%;
+
+    .main-page__author {
+        max-height: 260px;
+        display: flex;
+        align-items: flex-start;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            overflow: hidden;
+            background-position: bottom;
+            object-fit: cover;
+        }
+    }
+
 
     .main-content {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
 
-        h1 {
-            font-weight: 1000;
-            font-size: 3rem;
-            letter-spacing: 0;
-        }
+        // h1 {
+        //     font-weight: 1000;
+        //     font-size: 3rem;
+        //     letter-spacing: 0;
+        // }
 
         .subtitle {
             width: 100%;

@@ -73,7 +73,7 @@ export default function RootLayout({
 {/*           <body className={`${rubik.className} ${rubik80.className} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}> */}
           <body className={`bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
           <ToastContainer
-            // autoClose={3000}
+            autoClose={3000}
             position={"bottom-right"}
             draggable={false}
             hideProgressBar={true}

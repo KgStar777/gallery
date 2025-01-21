@@ -61,7 +61,8 @@ export function Header() {
       <Fragment>
         <span className="header-name">
           <Link href="/">
-            Alyona Sychyova
+            {/* Alyona Sychyova */}
+            Al<span className="text-yellow-500 font-bold antialiased">ё</span>na Sych<span className="text-yellow-500 font-bold antialiased">ё</span>va
           </Link>
         </span>
         <FullMenu priorityLanguage={priorityLanguage} links={links} />

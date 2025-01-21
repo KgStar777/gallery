@@ -16,7 +16,7 @@ export async function getInfo({
 }: {
   language?: string
 }) {
-  let data = await fetch(getStrapiURL(`/api/main-info?locale=${language}`))
+  let data = await fetch(getStrapiURL(`/api/main-info?locale=${language}&populate=*`))
   let info = await data.json()
   
   return info.data;

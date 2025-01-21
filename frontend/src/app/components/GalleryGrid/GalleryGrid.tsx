@@ -59,7 +59,7 @@ export function GalleryGrid({
                       )}
                       <div className="image-info">
                           <h5>{image.Title}</h5>
-                          <p>{image.Description[0].children[0].text}</p>
+                          <p className="font-light text-sm font-sans">{image.Description[0].children[0].text}</p>
                       </div>
                     </div>
                   </Link>
