@@ -31,8 +31,8 @@ export default async function Biography() {
         (bio.data?.Description as string)
           .split("\n")
           .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
-          .map((d) => (
-            <p className="font-light mb-4">{d}</p>
+          .map((d, idx) => (
+            <p key={idx} className="font-light mb-4">{d}</p>
           )
         )
       }</div>
