@@ -42,7 +42,8 @@ export function GalleryGrid({
                 const paint = isMobile ? image.Paint?.formats?.medium : image.Paint?.formats?.large ?? image.Paint
                 return (
                   // <Link key={pindex} href={image.documentId}>
-                  <Link key={pindex} href={`/gallery?id=${image.documentId}`}>
+                  // <Link key={pindex} href={`/gallery?id=${image.documentId}`}>
+                  <Link key={pindex} href={`/gallery?name=${image.Title.trim().toLowerCase().replace(/ /g, "-")}`}>
                     <div key={image.id} className="image-wrapper">
                       {!isEmpty(paint) && (
                         <Image
@@ -51,7 +52,6 @@ export function GalleryGrid({
                             width={paint?.width}
                             height={paint?.height}
                             // fill
-                            // placeholder="blur"
                             loading="lazy"
                             className="h-full w-full max-w-full"
                         />

@@ -6,18 +6,18 @@ import { VideoLayout } from "@/app/components/VideoLayout";
 import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 import { getBiography } from "@/app/services/pageService";
 import { isMobile } from "@/app/utils/isMobile";
-import { getBackgroundVideo } from "@/app/services/imageService";
-import { BackgroundVideoModel } from "@/app/models/ImageGalleryModel";
+// import { getBackgroundVideo } from "@/app/services/imageService";
+// import { BackgroundVideoModel } from "@/app/models/ImageGalleryModel";
 
 
 export default async function Biography() {
-    const userAgent = headers().get("user-agent") || "";
+  const userAgent = headers().get("user-agent") || "";
   const languages = headers().get("accept-language") || "";
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
   const bio = await getBiography({
     language: priorityLanguage,
   });
-    // const data: BackgroundVideoModel = await getBackgroundVideo();
+  // const data: BackgroundVideoModel = await getBackgroundVideo();
   // Use remark to convert markdown into HTML string
   // const processedContent = await remark()
   //   .use(html);

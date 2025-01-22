@@ -49,7 +49,7 @@ export async function MainPage({
                                 width={image.width}
                                 height={image.height}
                                 src={getStrapiURL(image.url)}
-                                alt="author"
+                                alt="authors photo"
                             />
                         </div>
                         <p className="italic font-light">{info.italic}</p>
@@ -74,7 +74,7 @@ export async function MainPage({
                         width={image.width}
                         height={image.height}
                         src={getStrapiURL(image.url)}
-                        alt="author"
+                        alt="authors photo"
                     />
                 </div>
                 <div className="main-content">

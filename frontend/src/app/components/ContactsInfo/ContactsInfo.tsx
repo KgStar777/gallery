@@ -20,17 +20,17 @@ export function ContactsInfo({
       <section className="contacts-section">
           <div className="contacts-info">
             <h1>{data.title}</h1>
-            <p>
+            <p className="font-light text-xs">
               <Link href={`tel:${data.phone}`}>{data.phone}</Link>
             </p>
-            <p className="font-light text-slate-700 text-sm font-sans">
+            <p className="font-light text-sm font-sans">
               <Link href={`mailto:${data.email}`}>{data.email}</Link>
             </p>
           </div>
           <div className="contacts-info__image-wrapper">
             <Image
               src={getStrapiMedia(data.contactImage.url) as string}
-              alt="Image of the project"
+              alt={data.title}
               width={data.contactImage.width}
               height={data.contactImage.height}
               loading="lazy"

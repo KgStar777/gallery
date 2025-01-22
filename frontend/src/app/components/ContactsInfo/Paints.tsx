@@ -21,7 +21,7 @@ export function Paints({
                 width={image.width}
                 height={image.height}
                 src={getStrapiURL(image.url)}
-                alt="Image of the project"
+                alt={paint.name}
                 className="object-cover w-full h-full mx-auto"
               />
               <div className="paint-info absolute">
@@ -43,7 +43,7 @@ export function Paints({
             width={paint.width}
             height={paint.height}
             src={getStrapiURL(paint.url)}
-            alt="Image of the project"
+            alt={paint.name}
             className="object-cover w-full h-full"
           />
           <div className="paint-info absolute">

@@ -28,7 +28,7 @@ export default async function Exhibitions() {
         return (
           <div key={index} className="mt-[1.7rem]">
             <h4 className="font-medium text-lg">{ex.year}:</h4>
-            {!ex.description.length
+            {!ex.description?.length
             ? null
             : filter(ex.description?.split("-"), size).map((d, idx) => {
               return (

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
 import { AppProps } from "next/app";
@@ -11,6 +11,8 @@ import { GlobalStoreProvider } from "./providers/global-store-provider";
 
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
+import { getProprityLanguages } from "./utils/getProprityLanguages";
+import { headers } from "next/headers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -58,6 +60,37 @@ const contextClass = {
 //   weight: ['300', '400'],
 //   style: ['normal', 'italic'],
 // });
+
+const meta: {
+  [key: string]: Metadata
+} = {
+  ru: {
+    title: "Художественная онлайн галерея Алёны Сычёвой",
+    description: "Главная",
+  },
+  en: {
+    title: "Alena Sycheva online gallery",
+    description: "Main page"
+  },
+}
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const languages = headers().get("accept-language") || "";
+  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+  const data = meta[priorityLanguage]
+  return {
+    title: data?.title,
+    description: data?.description,
+    openGraph: {
+      images: ['/some-specific-page-image.jpg', ...previousImages],
+    },
+  }
+}
 
 export default function RootLayout({
   children,

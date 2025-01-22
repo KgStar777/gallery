@@ -33,7 +33,7 @@ export function RequestForm(props: IRequestFormProps) {
           // transition-all h-full
             // className="overflow-y-hidden duration-300 opacity-100 w-full max-w-full"
             className="request-form__image"
-            alt=""
+            alt={"request form image"}
             src={getStrapiURL(props.formFields.image.url)}
             width={props.formFields.image.width}
             height={props.formFields.image.height}
