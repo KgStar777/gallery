@@ -24,13 +24,13 @@ const meta: {
 }
 
 export async function generateMetadata(
-  parent: ResolvingMetadata
+  // parent: ResolvingMetadata
 ): Promise<Metadata> {
   const languages = headers().get("accept-language") || "";
   const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
  
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || []
+  // const previousImages = (await parent).openGraph?.images || []
   const data = meta[priorityLanguage]
   return {
     title: data?.title,
