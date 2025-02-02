@@ -30,6 +30,11 @@
 
     .gallery-carousel__carousel-component {
         padding-top: 4.5rem;
+        
+        .swiper-slide-zoomed .carousel-component__wrapper .swiper-zoom-container img {
+            width: fit-content;
+            cursor: zoom-out;
+        }
     }
 
     .carousel-component__wrapper {
@@ -48,6 +53,7 @@
         height: 80vh;
         width: 100%;
         position: relative;
+        cursor: zoom-in;
         
         .carousel-component__img {
             width: 100%;
@@ -134,10 +140,10 @@
 }
 
   
-  .zoom-lens {
+.zoom-lens {
     position: absolute;
     border: 2px solid #fff;
     background-repeat: no-repeat;
     pointer-events: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-  }
+}

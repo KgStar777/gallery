@@ -17,7 +17,6 @@ export function Paints({
           return (
             <div key={idx} className="paint-wrapper">
               <Image
-                onContextMenu={e => e.preventDefault()}
                 loading="lazy"
                 width={image.width}
                 height={image.height}

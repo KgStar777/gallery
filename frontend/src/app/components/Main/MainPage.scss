@@ -1,14 +1,18 @@
 .main-page {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     height: fit-content;
-    margin: 2rem 10%;
+    // margin: 2rem 10%;
+    margin: 2rem 7% 2rem;
     gap: 2rem;
+    background-color: #F1F1F1;
+
 
     &__author {
         // max-height: 380px;
-        max-height: min-content;
+        // max-height: min-content;
         display: flex;
         align-items: flex-start;
         box-sizing: border-box;
@@ -16,7 +20,8 @@
 
         img {
             width: 100%;
-            max-height: 580px;
+            min-height: 100%;
+            // max-height: 580px;
             overflow: hidden;
             background-position: bottom;
             object-fit: cover;
@@ -27,7 +32,10 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        max-width: 40%;
+        max-width: 67%;
+        margin-top: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
 
         h1 {
             font-weight: 400;

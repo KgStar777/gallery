@@ -26,7 +26,6 @@ const ImageZoom = ({
     {/* <div className="carousel-component__item swiper-zoom-container"> */}
     <div className="carousel-component__item">
       <Image
-        onContextMenu={e => e.preventDefault()}
         width={width}
         height={height}
         ref={imgRef}

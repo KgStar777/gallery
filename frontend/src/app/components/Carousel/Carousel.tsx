@@ -51,7 +51,7 @@ export function Carousel({
   }
   const [currentImgId, setCurrentImgId] = useState(props.currentIdx);
   const [zoomEnabled, setZoomEnabled] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // const [position, setPosition] = useState({ x: 0, y: 0 });
   const swiperRef = useRef<SwiperRef>(null);
   // const zoomRef = useRef<SwiperRef>(null);
   const zoomContainerRef = useRef(null);
@@ -207,7 +207,7 @@ export function Carousel({
               onContextMenu={e => e.preventDefault()}
               ref={swiperRef}
               zoom={{
-                panOnMouseMove: true
+                panOnMouseMove: true,
               }}
               slidePrevClass="custom-prev"
               slideNextClass="custom-bext"
