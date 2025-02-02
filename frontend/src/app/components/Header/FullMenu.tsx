@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 // import { LanguageSelector } from "./LanguageSelector";
 import { ContactsLinks } from "@/app/components/ContactsLinks";
+import { useHandleContextMenu } from "@/app/hooks/useHandleContextMenu";
 // import LangSelect from "./LangSelect";
 
 interface IFullMenuProps {
@@ -15,6 +16,8 @@ interface IFullMenuProps {
 export function FullMenu(props: IFullMenuProps) {
   const pathname = usePathname() || "/";
 	const isActiveLink = (path: string) => path === pathname;
+
+  useHandleContextMenu();
   
   return (
     <nav className="navigation-panel">

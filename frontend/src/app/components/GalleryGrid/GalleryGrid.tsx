@@ -41,24 +41,27 @@ export function GalleryGrid({
               {(columnNode as Array<ImageGalleryModel>).map((image, pindex) => {
                 const paint = isMobile ? image.Paint?.formats?.medium : image.Paint?.formats?.large ?? image.Paint
                 return (
-                  // <Link key={pindex} href={image.documentId}>
-                  // <Link key={pindex} href={`/gallery?id=${image.documentId}`}>
-                  <Link key={pindex} href={`/gallery?name=${image.Title.trim().toLowerCase().replace(/ /g, "-")}`}>
-                    <div key={image.id} className="image-wrapper">
+                  <Link
+                    key={pindex}
+                    draggable="false"
+                    href={`/gallery?name=${image.Title.trim().toLowerCase().replace(/ /g, "-")}`}
+                  >
+                    <div key={image.id} className="image-wrapper text-center">
                       {!isEmpty(paint) && (
                         <Image
-                            src={getStrapiURL(paint?.url)}
-                            alt={image.Title}
-                            width={paint?.width}
-                            height={paint?.height}
-                            // fill
-                            loading="lazy"
-                            className="h-full w-full max-w-full"
+                          draggable="false"
+                          src={getStrapiURL(paint?.url)}
+                          alt={image.Title}
+                          width={paint?.width}
+                          height={paint?.height}
+                          // fill
+                          loading="lazy"
+                          className="h-full w-full max-w-full"
                         />
                       )}
-                      <div className="image-info">
-                          <h5>{image.Title}</h5>
-                          <p className="font-light text-sm font-sans">{image.Description[0].children[0].text}</p>
+                      <div className="image-info text-center">
+                          <h5 className="">{image.Title}</h5>
+                          <p className="font-light font-sans text-sm md:text-base lg:text-lg">{image.Description[0].children[0].text}</p>
                       </div>
                     </div>
                   </Link>

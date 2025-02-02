@@ -5,6 +5,7 @@ import { isMobile } from '@/app/utils/isMobile';
 import { CarouselHeader } from "@/app/components/Carousel/CarouselHeader";
 import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 import { Metadata, ResolvingMetadata } from "next";
+import { CarouselWrapper } from "../components/Carousel/CarouselWrapper";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -62,13 +63,11 @@ export default async function Gallery({
   const currentIdx = images?.findIndex((image: { Title: string }) => image.Title.trim().toLowerCase().replace(/ /g, "-") === name)
 
   return (
-      <Carousel
-        currentIdx={currentIdx !== -1 ? currentIdx : 0}
-        isMobile={isMobile(userAgent)}
-        images={images}
-        navigationHeader={(
-          <CarouselHeader priorityLanguage={priorityLanguage} isMobile={isMobile(userAgent)} />
-        )}
-      />
+    <CarouselWrapper
+      currentIdx={currentIdx !== -1 ? currentIdx : 0}
+      isMobile={isMobile(userAgent)}
+      images={images}
+      priorityLanguage={priorityLanguage}
+    />
   )
 }

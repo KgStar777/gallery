@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, SetStateAction, useCallback, useState } from 'react';
 import { ContactsLinks } from '../../ContactsLinks';
+import { useHandleContextMenu } from '@/app/hooks/useHandleContextMenu';
 
 interface IBurgerMenuProps {
   links: Array<LinkModel>;
@@ -29,6 +30,8 @@ export function BurgerMenu(props: IBurgerMenuProps) {
     }
     setOpen(is);
   }, [setOpen])
+
+  useHandleContextMenu();
 
     return (
       <Fragment>
