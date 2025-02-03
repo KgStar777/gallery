@@ -7,7 +7,7 @@ export function ContactsLinks(props: IContactsLinksProps) {
   
     const contacts = [
         { name: "telegram", link: "https://t.me/alyonasychyovaart" },
-        { name: "email", link: "/" },
+        { name: "email", link: "mailto:aly.art.management@gmail.com" },
         { name: "instagram", link: "http://instagram.com/alyonasychyova" },
         { name: "facebook", link: "https://www.facebook.com/alyona.sychyova?mibextid=ZbWKwL" },
         { name: "watsapp", link: "https://wa.me/79996713190" },
