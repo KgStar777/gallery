@@ -22,7 +22,7 @@ return (
                 <div className="text-sm">© 2019-{new Date().getFullYear()}</div>
                 {isRU && <div className="h-[12px]"></div>}
             </div>
-            <div className="flex flex-col max-w-[60%]">
+            <div className="flex flex-col max-w-[60%] gap-3">
                 <div className={mobileCheck ? "flex space-x-5 justify-start" : "flex space-x-5 justify-end"}>
                     <ContactsLinks priorityLanguage={priorityLanguage} />
                 </div>

@@ -66,6 +66,7 @@ export function CarouselHeader({
               <div className="flex flex-row items-center justify-center gap-5">
                 <ContactsLinks priorityLanguage={priorityLanguage} />
               </div>
+              {priorityLanguage === "ru" && <p className="text-[10px] text-zinc-500 mt-3">*Деятельность организации Meta Platforms Inc, ее продуктов Instagram и Facebook запрещена в Российской Федерации</p>}
             </div>
           </div>
         </div>

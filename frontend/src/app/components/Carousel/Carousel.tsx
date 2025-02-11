@@ -7,6 +7,7 @@ import { Pagination, Zoom } from 'swiper/modules';
 
 import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
+import { PaintCuption } from '@/app/components/PaintCaption';
 
 import "swiper/css";
 import "swiper/css/zoom";
@@ -183,8 +184,9 @@ export function Carousel({
                           />
                         </div>
                         <div className="carousel-info-mobile text-center">
-                          <h2>{img.Title}</h2>
-                          <p className="font-light text-slate-700 text-sm font-sans">{img.Description[0].children[0].text}</p>
+                          <h2 className="font-light text-lg md:text-lg lg:text-xl">{img.Title}</h2>
+                          <PaintCuption caption={img.Description[0].children[0].text} />
+                          {/* <p className="font-light text-slate-700 text-sm font-sans">{img.Description[0].children[0].text}</p> */}
                         </div>
                       </article>
                     </SwiperSlide>
@@ -252,8 +254,9 @@ export function Carousel({
                           </div>
                           {!isFullScreen && (
                             <div onMouseEnter={e => console.log("onMouseEnter")} className="carousel-info text-center">
-                              <h2>{img?.Title}</h2>
-                              <p className="font-light text-slate-700 text-sm font-sans">{img?.Description[0].children[0].text}</p>
+                              <h2 className="font-light text-lg md:text-lg lg:text-xl">{img?.Title}</h2>
+                              <PaintCuption caption={img?.Description[0].children[0].text} />
+                              {/* <p className="font-light text-slate-700 text-sm font-sans">{img?.Description[0].children[0].text}</p> */}
                             </div>
                           )}
                         </article>

@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
 import { isEmpty } from 'lodash';
+import { PaintCuption } from '../PaintCaption';
 
 
 interface IGalleryProps {
@@ -60,8 +61,9 @@ export function GalleryGrid({
                         />
                       )}
                       <div className="image-info text-center">
-                          <h5 className="">{image.Title}</h5>
-                          <p className="font-light font-sans text-sm md:text-base lg:text-lg">{image.Description[0].children[0].text}</p>
+                          <h5 className="font-light text-base md:text-lg lg:text-xl">{image.Title}</h5>
+                          <PaintCuption caption={image.Description[0].children[0].text} />
+                          {/* <p className="font-light font-sans text-m md:text-base lg:text-lg">{image.Description[0].children[0].text}</p> */}
                       </div>
                     </div>
                   </Link>
