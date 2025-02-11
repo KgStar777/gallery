@@ -1,15 +1,11 @@
 import { VideoLayout } from "@/app/components/VideoLayout";
-import { headers } from "next/headers";
 import { getExgibition } from "@/app/services/pageService";
-import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 import { Fragment } from "react";
 import { isEmpty } from "lodash";
-import { isMobile } from "@/app/utils/isMobile";
+import { useHeaders } from "@/app/hooks/useHeaders";
 
 export default async function Exhibitions() {
-  const languages = headers().get("accept-language") || "";
-  const userAgent = headers().get("user-agent") || "";
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
+  const { priorityLanguage, mobileCheck } = useHeaders();
   const exgibitionData: {
     data: Array<{
       year: string;
@@ -23,7 +19,7 @@ export default async function Exhibitions() {
 
   return (
     <Fragment>
-      <VideoLayout isMobile={isMobile(userAgent)} title={priorityLanguage === "ru" ? "Выставки" : "Exhibitions"} />
+      <VideoLayout isMobile={mobileCheck} title={priorityLanguage === "ru" ? "Выставки" : "Exhibitions"} />
       <div className="flex-row w-full px-[7%] py-[2rem]">{exgibitionData?.data.map((ex, index) => {
         return (
           <div key={index} className="mt-[1.7rem]">

@@ -25,7 +25,7 @@ export function Paints({
                 className="object-cover w-full h-full mx-auto"
               />
               <div className="paint-info absolute">
-                {/* <h4>ывапроыавполва</h4> */}
+                <h4 className="font-light font-sans text-sm md:text-base lg:text-lg">{paint.caption}</h4>
               </div>
             </div>
           )}
@@ -48,7 +48,7 @@ export function Paints({
             className="object-cover w-full h-full"
           />
           <div className="paint-info absolute">
-            {/* <h4>ывапроыавполва</h4> */}
+            <h4 className="font-light font-sans text-sm md:text-base lg:text-lg">{paint.caption}</h4>
           </div>
         </div>
       ))}

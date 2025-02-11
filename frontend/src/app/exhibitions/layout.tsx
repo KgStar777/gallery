@@ -1,10 +1,9 @@
 import { Fragment } from "react";
-import { Metadata, ResolvingMetadata } from "next";
-import { headers } from "next/headers";
+import { Metadata } from "next";
 
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
-import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
+import { useHeaders } from "@/app/hooks/useHeaders";
 
 const meta: {
   [key: string]: Metadata
@@ -20,11 +19,9 @@ const meta: {
 }
 
 export async function generateMetadata(
-  // parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const languages = headers().get("accept-language") || "";
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
- 
+  const { priorityLanguage } = useHeaders();
+
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || []
   const data = meta[priorityLanguage]
@@ -42,13 +39,15 @@ export default function ContactsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { priorityLanguage } = useHeaders();
+ 
   return (
     <Fragment>
       <Header />
       <main>
         {children}
       </main>
-      <Footer />
+      <Footer isRU={priorityLanguage === "ru"} />
     </Fragment>
   );
 }

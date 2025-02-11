@@ -1,13 +1,14 @@
 import Link from "next/link";
 
-import { isMobile } from "@/app/utils/isMobile";
-import { headers } from "next/headers";
+
 import { Fragment } from "react";
 import { BurgerMenu } from "./BurgerMenu";
 import { FullMenu } from "./FullMenu";
 // import { LanguageSelector } from "./LanguageSelector";
 // import LangSelect from "./LangSelect";
-import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
+
+import { sacramento } from "@/app/utils/fonts";
+import { useHeaders } from "@/app/hooks/useHeaders";
 
 const links = [
   {
@@ -33,12 +34,7 @@ const links = [
 ];
 
 export function Header() {
-  const userAgent = headers().get("user-agent") || "";
-  const mobileCheck = isMobile(userAgent);
-
-  const languages = headers().get("accept-language") || "";
-
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
+    const { priorityLanguage, mobileCheck } = useHeaders();
 
   const MenuNode = () => {
     if (mobileCheck) {
@@ -46,9 +42,14 @@ export function Header() {
         <Fragment>
           <div className="header-component__mobile">
             <Link href="">
-              <h1 className="text-2xl font-medium">
-              <span className="text-white bg-teal-500 p-1 border-teal-500 font-bold me-2">{String("АЛЁНА").toUpperCase()}</span>
-              Сычёва <span className="text-teal-500">{}</span>
+              {/* <h1 className="text-xl font-medium italic ms-3"> */}
+              <h1 className={`${sacramento.className} text-3xl font-medium ms-3`}>
+                Alyona Sychyova
+                {/* {
+                  priorityLanguage === "ru"
+                    ? "Алёна Сычёва"
+                    : "Alyona Sychyova"
+                } */}
               </h1>
             </Link>
             {/* <LanguageSelector /> */}
@@ -57,12 +58,25 @@ export function Header() {
           </div>
         </Fragment>
       )}
+      
+      console.log("sacramento: ", sacramento);
     return (
       <Fragment>
         <span className="header-name">
           <Link href="/">
             {/* Alyona Sychyova */}
-            Al<span className="text-yellow-500 font-bold antialiased">ё</span>na Sych<span className="text-yellow-500 font-bold antialiased">ё</span>va
+            {/* {
+              priorityLanguage === "ru" ? (
+                <span
+                  className={`text-orange-700 ${sacramento.className}`}
+                >Портфолио художника</span>
+              )
+              : (
+                <span className={`text-orange-700 ${sacramento.className}`}>Artist portfolio</span>
+              )
+            } */}
+            {/* <span className={`text-4xl italic ${sacramento.className}`}>Artist portfolio</span> */}
+            <span className={`text-3xl italic ${sacramento.className}`}>Alyona Sychyova</span>
           </Link>
         </span>
         <FullMenu priorityLanguage={priorityLanguage} links={links} />

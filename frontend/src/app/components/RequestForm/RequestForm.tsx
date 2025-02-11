@@ -1,15 +1,13 @@
 import Image from "next/image";
-import { headers } from "next/headers";
 
 import { RequestFormFieldsModel } from "@/app/models/ImageGalleryModel";
-import { isMobile } from "@/app/utils/isMobile";
 import { getStrapiURL } from "@/app/utils/api-helpers";
 // import { TextareaField } from "./TextareaField";
 // import { InputField } from "./InputField";
 import { Form } from "./Form";
 
 import "./RequestForm.scss";
-import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
+import { useHeaders } from "@/app/hooks/useHeaders";
 
 interface IRequestFormProps {
   formFields: RequestFormFieldsModel;
@@ -17,12 +15,8 @@ interface IRequestFormProps {
 
 
 export function RequestForm(props: IRequestFormProps) {
-  const userAgent = headers().get("user-agent") || "";
-  const mobileCheck = isMobile(userAgent);
+    const { priorityLanguage, mobileCheck } = useHeaders();
 
-  const languages = headers().get("accept-language") || "";
-
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
   return (
     <div className="request-form-component__wrapper">
       <h3>{priorityLanguage === "ru" ? "Отправить запрос" : "Send ro request"}</h3>

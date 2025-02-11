@@ -14,6 +14,7 @@ export interface PaintFormats {
 export interface ImageModel {
     url: string;
     name: string;
+    caption: string;
     size: string;
     width: number;
     height: number;

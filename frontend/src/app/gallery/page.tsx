@@ -1,15 +1,16 @@
 import { getImages } from "@/app/services/imageService";
-import { Carousel } from "@/app/components/Carousel";
-import { headers } from 'next/headers';
-import { isMobile } from '@/app/utils/isMobile';
-import { CarouselHeader } from "@/app/components/Carousel/CarouselHeader";
-import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
+// import { Carousel } from "@/app/components/Carousel";
+// import { headers } from 'next/headers';
+// import { isMobile } from '@/app/utils/isMobile';
+// import { CarouselHeader } from "@/app/components/Carousel/CarouselHeader";
+// import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 import { Metadata, ResolvingMetadata } from "next";
 import { CarouselWrapper } from "../components/Carousel/CarouselWrapper";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useHeaders } from "@/app/hooks/useHeaders";
 
 const meta: {
   [key: string]: Metadata
@@ -27,8 +28,7 @@ const meta: {
 export async function generateMetadata(
   // parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const languages = headers().get("accept-language") || "";
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
+  const { priorityLanguage, mobileCheck } = useHeaders();
  
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || []
@@ -51,10 +51,7 @@ export default async function Gallery({
 }) {
   const id = searchParams.id;
   const name = searchParams.name;
-  const userAgent = headers().get("user-agent") || "";
-  const languages = headers().get("accept-language") || "";
-  
-  const priorityLanguage = getProprityLanguages(languages, ["en", "ru"])  ?? "en"
+  const { priorityLanguage, mobileCheck } = useHeaders();
 
   const images = await getImages({
     language: priorityLanguage,
@@ -65,7 +62,7 @@ export default async function Gallery({
   return (
     <CarouselWrapper
       currentIdx={currentIdx !== -1 ? currentIdx : 0}
-      isMobile={isMobile(userAgent)}
+      isMobile={mobileCheck}
       images={images}
       priorityLanguage={priorityLanguage}
     />

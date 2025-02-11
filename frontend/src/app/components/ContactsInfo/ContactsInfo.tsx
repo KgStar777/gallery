@@ -3,18 +3,17 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { ContactsInfoModel } from "@/app/models/ImageGalleryModel"
+import { getStrapiMedia } from "@/app/utils/api-helpers"
+import { useHeaders } from "@/app/hooks/useHeaders"
 
 import { Paints } from "./Paints"
-import { headers } from "next/headers"
-import { isMobile } from "@/app/utils/isMobile"
-import { getStrapiMedia } from "@/app/utils/api-helpers"
 
 export function ContactsInfo({
   data
 }: {
   data: ContactsInfoModel
 }) {
-  const userAgent = headers().get("user-agent") || "";
+  const { mobileCheck } = useHeaders()
   return (
     <Fragment>
       <section className="contacts-section">
@@ -40,7 +39,7 @@ export function ContactsInfo({
       </section>
       <section className="paints-interiors">
         <h3 className="page-header">{data.subtitle}</h3>      
-          <Paints isMobile={isMobile(userAgent)} paints={data} />
+          <Paints isMobile={mobileCheck} paints={data} />
       </section>
     </Fragment>
   )

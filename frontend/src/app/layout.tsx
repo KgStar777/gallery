@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 import { getProprityLanguages } from "./utils/getProprityLanguages";
 import { headers } from "next/headers";
+import { useHeaders } from "./hooks/useHeaders";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -77,8 +78,7 @@ const meta: {
 export async function generateMetadata(
   // parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const languages = headers().get("accept-language") || "";
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
+  const { priorityLanguage } = useHeaders();
  
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || []

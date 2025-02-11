@@ -6,14 +6,13 @@ import { VideoLayout } from "@/app/components/VideoLayout";
 import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 import { getBiography } from "@/app/services/pageService";
 import { isMobile } from "@/app/utils/isMobile";
+import { useHeaders } from "@/app/hooks/useHeaders";
 // import { getBackgroundVideo } from "@/app/services/imageService";
 // import { BackgroundVideoModel } from "@/app/models/ImageGalleryModel";
 
 
 export default async function Biography() {
-  const userAgent = headers().get("user-agent") || "";
-  const languages = headers().get("accept-language") || "";
-  const priorityLanguage = getProprityLanguages(languages, ["ru", "en"]) ?? "en";
+  const { priorityLanguage, mobileCheck } = useHeaders();
   const bio = await getBiography({
     language: priorityLanguage,
   });
@@ -25,7 +24,7 @@ export default async function Biography() {
   // const contentHtml = processedContent.toString();
   return (
     <Fragment>
-      <VideoLayout isMobile={isMobile(userAgent)} title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
+      <VideoLayout isMobile={mobileCheck} title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
       {/* <div dangerouslySetInnerHTML={{ __html: props.bio }} /> */}
       <div className="flex-row w-full px-[7%] py-[2rem]">{
         (bio.data?.Description as string)
