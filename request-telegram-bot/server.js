@@ -1,13 +1,12 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const express = require('express');
-// const axios = require('axios');
 const bodyParser = require('body-parser');
 
 // Загружаем переменные из .env
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const ALLOWED_USERS = process.env.ALLOWED_USERS.split(',').map(id => parseInt(id, 10));
-TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const PORT = process.env.PORT || 3124;
 
 // Создаём бота
@@ -21,13 +20,17 @@ app.post('/webhook', async (req, res) => {
         const data = req.body;
 
         // Проверяем, есть ли необходимые данные
-        if (!data || !data.entry) {
+        if (!data || !data.entry || !data.model) {
             return res.status(400).send('Нет данных');
         }
 
-        // if (data.model === "subscription-form") {
+        if (data.model === "subscription-form") {
 
-        // }
+        }
+
+        if (data.model === "request-price-form") {
+
+        }
 
         const request = data.entry;
 
@@ -59,7 +62,7 @@ const checkAccess = (ctx) => {
 // Команда /start
 bot.start((ctx) => {
     if (!checkAccess(ctx)) return;
-    ctx.reply("Привет! Ты имеешь доступ к этому приватному боту. 🚀");
+    ctx.reply("Привет! Ты имеешь доступ к запросам и уведомлениям поступающим в галерею. 🚀");
 });
 
 // // Обработчик сообщений
