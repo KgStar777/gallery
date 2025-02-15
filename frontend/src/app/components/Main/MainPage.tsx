@@ -73,10 +73,10 @@ export async function MainPage({
                   alt="authors photo"
                 />
               </div>
-              <p className={`${caveat.className} text-zinc-700 text-xl italic font-light`}>{info.italic}</p>
+              <p className={`${caveat.className} text-zinc-700 text-2xl italic font-light`}>{info.italic}</p>
               <hr />
-              <p className={"mb-3 font-sans text-lg text-zinc-700"}>{info.article1}</p>
-              <p className="mb-3 font-sans text-lg text-zinc-700">{info.article2}</p>
+              <p className={"font-sans text-lg text-zinc-700"}>{info.article1}</p>
+              <p className="font-sans text-lg text-zinc-700">{info.article2}</p>
               <div className="w-full flex items-center justify-center">
                 {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                 {/* <SubmitButton id="scroll-button" type="button">
@@ -117,8 +117,8 @@ export async function MainPage({
                     // }</h1> */}
                     <p className={`${caveat.className} text-zinc-600 text-2xl font-light font-sans`}>{info.italic}</p>                    
                     <hr />
-                    <p className="text-zinc-600 mb-3 font-sans text-lg">{info.article1}</p>
-                    <p className="text-zinc-600 mb-3 font-sans text-lg">{info.article2}</p>
+                    <p className="text-zinc-600 font-sans text-lg">{info.article1}</p>
+                    <p className="text-zinc-600 font-sans text-lg">{info.article2}</p>
                     {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                     {/* <SubmitButton id="scroll-button" type="button">
                         <p className="uppercase">получить сюжеты</p>
