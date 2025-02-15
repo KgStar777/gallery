@@ -49,7 +49,7 @@ export function BurgerMenu(props: IBurgerMenuProps) {
                     document.getElementsByTagName("body")?.[0]?.classList.remove("overflow-hidden");
                   }}
                   key={idx}
-                  className={isActiveLink(link.path) ? 'active' : ''}
+                  className={isActiveLink(link.path) ? 'active uppercase' : 'uppercase'}
                   href={link.path}
                 >{
                   props.priorityLanguage === "ru"

@@ -39,7 +39,7 @@ export function ContactsInfo({
       </section>
       <section className="paints-interiors">
         <h2 className="page-header py-8">{data.subtitle}</h2>      
-          <Paints isMobile={mobileCheck} paints={data} />
+        <Paints isMobile={mobileCheck} paints={data} />
       </section>
     </Fragment>
   )

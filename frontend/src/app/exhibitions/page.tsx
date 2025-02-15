@@ -34,7 +34,8 @@ export default async function Exhibitions() {
                     .split("\n")
                     .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
                     .map((d, idx) => (
-                      <p key={idx} className="font-light text-sm mb-1">{d}</p>
+                      // <p key={idx} className="font-light text-sm mb-1">{d}</p>
+                      <p key={idx} className="text-zinc-600 mb-3 font-sans text-lg">{d}</p>
                     )
                   )}
                 </div>

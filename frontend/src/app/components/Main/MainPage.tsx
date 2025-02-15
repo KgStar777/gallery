@@ -75,8 +75,8 @@ export async function MainPage({
               </div>
               <p className={`${caveat.className} text-zinc-700 text-xl italic font-light`}>{info.italic}</p>
               <hr />
-              <p className={"font-light text-zinc-700"}>{info.article1}</p>
-              <p className="font-light text-zinc-700">{info.article2}</p>
+              <p className={"mb-3 font-sans text-lg text-zinc-700"}>{info.article1}</p>
+              <p className="mb-3 font-sans text-lg text-zinc-700">{info.article2}</p>
               <div className="w-full flex items-center justify-center">
                 {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                 {/* <SubmitButton id="scroll-button" type="button">
