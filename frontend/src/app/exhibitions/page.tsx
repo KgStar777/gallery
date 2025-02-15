@@ -41,6 +41,7 @@ export default async function Exhibitions() {
               </div>
             )
           }
+
         return (
           <div key={index} className={`mt-[1.7rem] flex bg-[#F1F1F1] justify-between items-between p-4 ${isReverse ? "flex-row" : "flex-row-reverse"}`}>
             {<h4 className={"text-center font-bold text-zinc-300 text-9xl mb-[.7rem] min-w-[30%] max-w-[40%] flex items-center justify-around"}>{ex.year.replace("-", "")}</h4>}
@@ -49,7 +50,7 @@ export default async function Exhibitions() {
                 .split("\n")
                 .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
                 .map((d, idx) => (
-                  <p key={idx} className="font-light mb-3">{d}</p>
+                  <p key={idx} className="font-light mb-3 font-sans text-lg">{d}</p>
                 )
               )}
             </div>

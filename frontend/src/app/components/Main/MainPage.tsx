@@ -117,8 +117,8 @@ export async function MainPage({
                     // }</h1> */}
                     <p className={`${caveat.className} text-zinc-600 text-2xl font-light font-sans`}>{info.italic}</p>                    
                     <hr />
-                    <p className="text-zinc-600 text-m font-sans">{info.article1}</p>
-                    <p className="text-zinc-600 text-m font-sans">{info.article2}</p>
+                    <p className="text-zinc-600 mb-3 font-sans text-lg">{info.article1}</p>
+                    <p className="text-zinc-600 mb-3 font-sans text-lg">{info.article2}</p>
                     {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                     {/* <SubmitButton id="scroll-button" type="button">
                         <p className="uppercase">получить сюжеты</p>

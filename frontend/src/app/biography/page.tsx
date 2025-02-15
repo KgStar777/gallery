@@ -31,7 +31,7 @@ export default async function Biography() {
           .split("\n")
           .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
           .map((d, idx) => (
-            <p key={idx} className="font-light mb-4">{d}</p>
+            <p key={idx} className="font-light mb-3 font-sans text-lg">{d}</p>
           )
         )
       }</div>
