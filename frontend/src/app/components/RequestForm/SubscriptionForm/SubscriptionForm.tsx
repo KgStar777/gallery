@@ -50,7 +50,11 @@ export function SubscriptionForm(props: {
 
   return (
     <section className="subscription-form-section">
-      <h3>{props.priorityLanguage === "ru" ? "Подписаться на новости" : "Subscribe to news"}</h3>
+      <h3 className="text-xl lg:text-2xl">
+        {props.priorityLanguage === "ru"
+        ? "Подписаться на новости"
+        : "Subscribe to news"}
+      </h3>
       <form
         className={"subscription-form"
           // props.isMobile

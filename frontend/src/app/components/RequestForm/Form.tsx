@@ -48,7 +48,7 @@ export function Form(props: {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="request-form">
+    <form onSubmit={handleSubmit(onSubmit)} id="request-form" className="request-form">
       <InputField
         placeholder={props.priorityLanguage === "ru" ? "Имя" : "Name"}
         type="text"

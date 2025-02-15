@@ -13,7 +13,7 @@ export function ContactsInfo({
 }: {
   data: ContactsInfoModel
 }) {
-  const { mobileCheck } = useHeaders()
+  const { mobileCheck } = useHeaders();
   return (
     <Fragment>
       <section className="contacts-section">
@@ -38,7 +38,7 @@ export function ContactsInfo({
           </div>
       </section>
       <section className="paints-interiors">
-        <h3 className="page-header">{data.subtitle}</h3>      
+        <h2 className="page-header py-8">{data.subtitle}</h2>      
           <Paints isMobile={mobileCheck} paints={data} />
       </section>
     </Fragment>

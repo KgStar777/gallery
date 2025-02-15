@@ -39,7 +39,7 @@
 
         h1 {
             font-weight: 400;
-            font-size:3.4rem;
+            font-size: 3.8rem;
         }
 
         .subtitle {
@@ -73,6 +73,7 @@
     margin: 2rem 7%;
 
     .main-page__author {
+        // min-width: 30%;
         display: flex;
         align-items: flex-start;
         box-sizing: border-box;

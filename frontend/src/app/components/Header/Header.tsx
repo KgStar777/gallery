@@ -59,7 +59,6 @@ export function Header() {
         </Fragment>
       )}
       
-      console.log("sacramento: ", sacramento);
     return (
       <Fragment>
         <span className="header-name">
@@ -76,7 +75,7 @@ export function Header() {
               )
             } */}
             {/* <span className={`text-4xl italic ${sacramento.className}`}>Artist portfolio</span> */}
-            <span className={`text-3xl italic ${sacramento.className}`}>Alyona Sychyova</span>
+            <span className={`text-3xl lg:text-4xl italic ${sacramento.className}`}>Alyona Sychyova</span>
           </Link>
         </span>
         <FullMenu priorityLanguage={priorityLanguage} links={links} />

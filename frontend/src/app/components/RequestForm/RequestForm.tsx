@@ -2,12 +2,12 @@ import Image from "next/image";
 
 import { RequestFormFieldsModel } from "@/app/models/ImageGalleryModel";
 import { getStrapiURL } from "@/app/utils/api-helpers";
+import { useHeaders } from "@/app/hooks/useHeaders";
 // import { TextareaField } from "./TextareaField";
 // import { InputField } from "./InputField";
 import { Form } from "./Form";
 
 import "./RequestForm.scss";
-import { useHeaders } from "@/app/hooks/useHeaders";
 
 interface IRequestFormProps {
   formFields: RequestFormFieldsModel;
