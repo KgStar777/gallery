@@ -185,8 +185,8 @@ export function Carousel({
                         </div>
                         <div className="carousel-info-mobile text-center">
                           <h2 className="font-light text-lg md:text-lg lg:text-xl">{img.Title}</h2>
-                          <PaintCuption caption={img.Description[0].children[0].text} />
-                          {/* <p className="font-light text-slate-700 text-sm font-sans">{img.Description[0].children[0].text}</p> */}
+                          {/* <PaintCuption caption={img.Description[0].children[0].text} /> */}
+                          <p className="font-light text-zinc-700 text-lg font-sans">{img.Description[0].children[0].text}</p>
                         </div>
                       </article>
                     </SwiperSlide>
@@ -255,8 +255,8 @@ export function Carousel({
                           {!isFullScreen && (
                             <div onMouseEnter={e => console.log("onMouseEnter")} className="carousel-info text-center">
                               <h2 className="font-light text-lg md:text-lg lg:text-xl">{img?.Title}</h2>
-                              <PaintCuption caption={img?.Description[0].children[0].text} />
-                              {/* <p className="font-light text-slate-700 text-sm font-sans">{img?.Description[0].children[0].text}</p> */}
+                              {/* <PaintCuption caption={img?.Description[0].children[0].text} /> */}
+                              <p className="text-zinc-700 font-light font-sans text-xl">{img?.Description[0].children[0].text}</p>
                             </div>
                           )}
                         </article>

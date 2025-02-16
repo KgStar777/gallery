@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { ContactsInfoModel } from "@/app/models/ImageGalleryModel"
 import { getStrapiURL } from "@/app/utils/api-helpers"
-import { PaintCuption } from "@/app/components/PaintCaption"
 
 export function Paints({
     paints,
@@ -26,9 +25,7 @@ export function Paints({
                 className="object-cover w-full h-full mx-auto"
               />
               <div className="paint-info absolute">
-                {/* <h4 className="font-light font-sans text-base md:text-base lg:text-lg">{paint.caption}</h4> */}
-                {/* <h4 className="font-light font-sans text-base md:text-base lg:text-lg">{paint.caption}</h4> */}
-                <h4 className="font-sans text-lg">{paint.caption}</h4>
+                <h4 className="font-sans font-light text-2xl">{paint.caption}</h4>
               </div>
             </div>
           )}
@@ -51,9 +48,7 @@ export function Paints({
             className="object-cover w-full h-full"
           />
           <div className="paint-info absolute">
-            {/* <PaintCuption caption={paint.caption} /> */}
-            <h4 className="mb-3 font-sans text-lg">{paint.caption}</h4>
-            {/* <h4 className="font-medium text-m md:text-lg lg:text-lg">{paint.caption}</h4> */}
+            <h4 className="font-sans font-light text-xl">{paint.caption}</h4>
           </div>
         </div>
       ))}
