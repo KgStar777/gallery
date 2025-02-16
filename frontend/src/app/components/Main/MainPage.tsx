@@ -75,8 +75,8 @@ export async function MainPage({
               </div>
               <p className={`${caveat.className} text-zinc-700 text-2xl italic font-light`}>{info.italic}</p>
               <hr />
-              <p className={"font-sans text-lg text-zinc-700"}>{info.article1}</p>
-              <p className="font-sans text-lg text-zinc-700">{info.article2}</p>
+              <p className={"font-sans text-lg text-zinc-700 font-light"}>{info.article1}</p>
+              <p className="font-sans text-lg text-zinc-700 font-light">{info.article2}</p>
               <div className="w-full flex items-center justify-center">
                 {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                 {/* <SubmitButton id="scroll-button" type="button">
@@ -110,15 +110,10 @@ export async function MainPage({
                         ? <h1 className={"text-zinc-900 font-black font-serif"}>Портфолио</h1>
                         : <h1 className={"text-zinc-900 font-black font-serif"}>Portfolio</h1>
                     }
-                    {/* // <h1 className="font-black font-sans md:font-serif font">{
-                    //     priorityLanguage === "ru"
-                    //         // ? "Алёна Сычёва"
-                    //         // : "Alyona Sychyova"
-                    // }</h1> */}
                     <p className={`${caveat.className} text-zinc-600 text-2xl font-light font-sans`}>{info.italic}</p>                    
                     <hr />
-                    <p className="text-zinc-600 font-sans text-lg">{info.article1}</p>
-                    <p className="text-zinc-600 font-sans text-lg">{info.article2}</p>
+                    <p className="text-zinc-600 font-sans text-lg font-light">{info.article1}</p>
+                    <p className="text-zinc-600 font-sans text-lg font-light">{info.article2}</p>
                     {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                     {/* <SubmitButton id="scroll-button" type="button">
                         <p className="uppercase">получить сюжеты</p>

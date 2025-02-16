@@ -50,9 +50,9 @@
     }
     
     .carousel-component__item {
+        position: relative;
         height: 80vh;
         width: 100%;
-        position: relative;
         cursor: zoom-in;
         
         .carousel-component__img {
@@ -83,6 +83,7 @@
     }
 }
 
+// MOBILE
 .gallery-carousel__wrapper-mobile {
     box-sizing: border-box;
     display: flex;
@@ -100,7 +101,7 @@
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-rows: 60vh 30vh;
+            grid-template-rows: 65vh 25vh;
         }
     }
 

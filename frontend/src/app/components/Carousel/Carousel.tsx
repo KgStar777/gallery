@@ -185,7 +185,6 @@ export function Carousel({
                         </div>
                         <div className="carousel-info-mobile text-center">
                           <h2 className="font-light text-lg md:text-lg lg:text-xl">{img.Title}</h2>
-                          {/* <PaintCuption caption={img.Description[0].children[0].text} /> */}
                           <p className="font-light text-zinc-700 text-lg font-sans">{img.Description[0].children[0].text}</p>
                         </div>
                       </article>
@@ -266,7 +265,7 @@ export function Carousel({
                 })
               }
               {
-                images.length > 1 && (
+                images?.length > 1 && (
                   <div className={(isFullScreen ? "w-[100%] " : "w-[70%] ") + "flex flex-row items-center justify-center gap-8 mt-6"}>
                     <button className="custom-prev" onClick={goPrev}><BackIcon /></button>
                     <button className="custom-next" onClick={goNext}><NextIcon /></button>
