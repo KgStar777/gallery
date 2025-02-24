@@ -17,7 +17,7 @@ export function Footer({
 return (
     <Fragment>
         <SubscriptionForm priorityLanguage={priorityLanguage} isMobile={mobileCheck} />
-        <footer className={"footer "}>
+        <footer className="footer">
             <div className="flex flex-col">
                 <div className="text-sm">© 2019-{new Date().getFullYear()}</div>
                 {isRU && <div className="h-[12px]"></div>}

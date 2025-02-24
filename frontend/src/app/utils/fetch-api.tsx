@@ -4,7 +4,8 @@ import { getStrapiURL } from "./api-helpers";
     export async function fetchAPI(
       path: string,
       urlParamsObject = {},
-      options = {}
+      options = {},
+      isClient = false
     ) {
       try {
         // Merge default and user options
@@ -20,7 +21,7 @@ import { getStrapiURL } from "./api-helpers";
         const queryString = qs.stringify(urlParamsObject);
         const requestUrl = `${getStrapiURL(
           `/api${path}${queryString ? `?${queryString}` : ""}`
-        )}`;
+        ), isClient}`;
     
         // Trigger API call
         const response = await fetch(requestUrl, mergedOptions);

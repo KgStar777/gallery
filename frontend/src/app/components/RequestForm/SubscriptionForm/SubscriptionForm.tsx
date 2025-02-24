@@ -33,7 +33,7 @@ export function SubscriptionForm(props: {
       body: JSON.stringify({ data }),
       method: "POST",
       next: { revalidate: null }
-    }).then(() => {
+    }, true).then(() => {
       toasty({
         status: "success",
         message: "Message sent successfully."

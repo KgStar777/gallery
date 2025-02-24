@@ -24,7 +24,14 @@ export default async function Biography() {
   // const contentHtml = processedContent.toString();
   return (
     <Fragment>
-      <VideoLayout isMobile={mobileCheck} title={priorityLanguage === "ru" ? "Биография" : "Biography"} />
+      <VideoLayout
+        isMobile={mobileCheck}
+        title={
+          priorityLanguage === "ru"
+            ? "Биография"
+            : "Biography"
+        }
+      />
       {/* <div dangerouslySetInnerHTML={{ __html: props.bio }} /> */}
       <div className="flex-row w-full px-[7%] py-[2rem]">{
         (bio.data?.Description as string)
