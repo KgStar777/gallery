@@ -20,8 +20,9 @@ import { getStrapiURL } from "./api-helpers";
         // Build request URL
         const queryString = qs.stringify(urlParamsObject);
         const requestUrl = `${getStrapiURL(
-          `/api${path}${queryString ? `?${queryString}` : ""}`
-        ), isClient}`;
+          `/api${path}${queryString ? `?${queryString}` : ""}`,
+          isClient
+        )}`;
     
         // Trigger API call
         const response = await fetch(requestUrl, mergedOptions);
