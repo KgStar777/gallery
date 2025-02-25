@@ -2,7 +2,7 @@ export function getStrapiURL(path = '', isClient = false) {
     const defaultUrl = 'http://localhost:1337';
     return `${!isClient
         ? process.env.NEXT_PUBLIC_STRAPI_API_URL || defaultUrl
-        : process.env.NEXT_API_URL || defaultUrl
+        : process.env.NEXT_PUBLIC_API_URL || defaultUrl
     }${path}`;
 }
 
