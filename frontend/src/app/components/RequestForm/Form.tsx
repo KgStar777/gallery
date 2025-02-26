@@ -29,7 +29,7 @@ export function Form(props: {
   });
 
   const onSubmit: SubmitHandler<RequestFormModel> = async (data: RequestFormModel) => {
-    await fetchAPI("/request-price-forms", "", {
+    await fetchAPI("/request-price-form", "", {
       body: JSON.stringify({ data }),
       method: "POST",
       next: { revalidate: null }

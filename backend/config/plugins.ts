@@ -5,7 +5,7 @@ export default () => ({
             provider: "local",
             providerOptions: {
                 sizeOptimization: true,
-                sizeLimit: 10000000,
+                // sizeLimit: 10000000,
             }
         }
     }

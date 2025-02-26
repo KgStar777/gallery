@@ -29,7 +29,7 @@ export function SubscriptionForm(props: {
   })
 
   const onSubmit: SubmitHandler<SubscriptionFormModel> = async (data: SubscriptionFormModel) => {
-    await fetchAPI("/subscription-forms", "", {
+    await fetchAPI("/subscription-form", "", {
       body: JSON.stringify({ data }),
       method: "POST",
       next: { revalidate: null }
