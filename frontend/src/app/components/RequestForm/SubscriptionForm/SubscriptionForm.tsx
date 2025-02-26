@@ -29,20 +29,24 @@ export function SubscriptionForm(props: {
   })
 
   const onSubmit: SubmitHandler<SubscriptionFormModel> = async (data: SubscriptionFormModel) => {
-    await fetchAPI("/subscription-form", "", {
+    await fetchAPI("/subscription-forms", "", {
       body: JSON.stringify({ data }),
       method: "POST",
       next: { revalidate: null }
     }, true).then(() => {
       toasty({
         status: "success",
-        message: "Message sent successfully."
+        message: props.priorityLanguage === "ru"
+          ? "Сообщение отправлено успешно"
+          : "Message sent successfully"
       });
       reset();
     }).catch(() => {
       toasty({
         status: "error",
-        message: "Sending error."
+        message: props.priorityLanguage === "ru"
+          ? "Ошибка отправки"
+          : "Sending error"
       });
     })
   }
