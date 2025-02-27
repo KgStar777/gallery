@@ -1,7 +1,8 @@
 "use server";
 
-import { fetchAPI } from "@/app/utils/fetch-api";
 import { z } from "zod";
+
+import { fetchAPI } from "@/app/utils/fetch-api";
 
 const schemaSubscriptionForm = z.object({
   fullname: z.string().min(2).max(32),
