@@ -1,12 +1,32 @@
 "use server";
 
 import { fetchAPI } from "@/app/utils/fetch-api";
-// import { toasty } from "../toasty";
+import { z } from "zod";
 
-// export async function priceFormAction(prevState: any, formData: FormData) {
-export async function priceFormAction(formData: FormData) {
-  console.log("Hello From Register User Action");
+const schemaSubscriptionForm = z.object({
+  fullname: z.string().min(2).max(32),
+  email: z.string().email(),
+  phone: z.string().min(10),
+  comment: z.string().optional(),
 
+})
+
+export async function subscriptionFormService(formData: any) {
+    try {
+      const result = await fetchAPI("/request-price-forms", "", {
+        body: JSON.stringify({ data: formData }),
+        method: "POST",
+        // next: { revalidate: null }
+      });
+      
+      return result;
+    } catch (err) {
+      console.log("!ok", err)
+      return err
+    }
+}
+
+export async function priceFormAction(prevState: any, formData: FormData) {
   const fields = {
     fullname: formData.get("fullname"),
     email: formData.get("email"),
@@ -14,48 +34,36 @@ export async function priceFormAction(formData: FormData) {
     comment: formData.get("comment"),
   };
 
-  // console.log("#############");
-  // console.log(fields);
-  // console.log("#############");
+  const validatedFields = schemaSubscriptionForm.safeParse(fields)
 
-    try {
-      const result = await fetchAPI("/request-price-forms", "", {
-        body: JSON.stringify({ data: fields }),
-        method: "POST",
-        // next: { revalidate: null }
-      });
+  if (!validatedFields.success) {
+    return {
+      ...prevState,
+      status: null,
+      strapiErrors: null,
+      zodErrors: validatedFields.error.flatten().fieldErrors,
+      message: "Something wrong. Please try again"
+    };
+  }
 
-      if (!result.ok) {
-        // throw new Error("")
-      }
-    } catch (err) {
-      console.log("!ok", err)
-    }
-    // .then((response) => {
-    //   console.log("ok", response)
-    //   // toasty({
-    //   //   status: "success",
-    //   //   message: "ru"
-    //   //   // message: priorityLanguage === "ru"
-    //   //   //   ? "Сообщение отправлено успешно"
-    //   //   //   : "Message sent successfully"
-    //   // });
-    //   // reset();
-    //   return response.json();
-    // }).catch((err) => {
-    //   console.log("!ok", err)
-    //   // toasty({
-    //   //   status: "error",
-    //   //   message: "ru"
-    //   //   // message: priorityLanguage === "ru"
-    //   //   //   ? "Ошибка отправки"
-    //   //   //   : "Sending error"
-    //   // });
-    // })
+  const resp = await subscriptionFormService(fields);
 
-  // return {
-  //   // ...prevState,
-  //   // data: fields,
-  //   ...fields
-  // };
+  if (!resp || resp.error) {
+    return {
+      ...prevState,
+      status: false,
+      strapiErrors: resp?.error ? resp.error : null,
+      zodErrors: null,
+      message: "Something wrong. Please try again"
+    };
+  }
+
+  return {
+    ...prevState,
+    data: resp.data,
+    strapiErrors: null,
+    zodErrors: null,
+    message: null,
+    status: true
+  };
 }

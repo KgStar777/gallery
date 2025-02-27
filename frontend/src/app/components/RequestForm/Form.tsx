@@ -1,20 +1,19 @@
 "use client"
-import { SubmitHandler, useForm } from "react-hook-form";
+
+import { useForm } from "react-hook-form";
 import { get } from "lodash";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useCallback, useEffect } from "react";
+import { useFormState } from "react-dom";
 
 import { RequestFormFieldsModel, RequestFormModel } from "@/app/models/ImageGalleryModel";
+import { toasty } from "@/app/components/toasty";
 
 import { InputField } from "./InputField";
 import { TextareaField } from "./TextareaField";
 import { schemaFormResolver } from "./validation/schemaFormResolver";
-import { fetchAPI } from "@/app/utils/fetch-api";
-import { toasty } from "@/app/components/toasty";
 import { SubmitButton } from "./SubmitButton";
-import { FormWrapper } from "./FormWrapper";
-import { useActionState } from "react";
 import { priceFormAction } from "./priceFormAction";
-import { useFormStatus } from "react-dom";
 
 export function Form(props: {
   formFields: RequestFormFieldsModel
@@ -23,52 +22,47 @@ export function Form(props: {
 }) {
   const {
     register,
-    handleSubmit,
-    control,
     formState: { errors },
     reset
   } = useForm<RequestFormModel>({
     resolver: yupResolver(schemaFormResolver)
   });
 
-  const status = useFormStatus();
+  const [formState, formAction] = useFormState(priceFormAction, {
+    data: null,
+    strapiErrors: null,
+    zodErrors: null,
+    message: null,
+    status: null,
+  });
 
-  // console.log("status: ", status);
-  // const [formState, formAction] = useActionState(priceFormAction, {
-  //   fullname: "",
-  //   email: "",
-  //   phone: "",
-  //   comment: ""
-  // });
+    const getError = useCallback((name: string) => {
+      return get(errors, name)?.message || get(formState.zodErrors, name)?.[0]
+    }, [errors, formState.zodErrors])
 
-  // const onSubmit: SubmitHandler<RequestFormModel> = async (data: RequestFormModel) => {
-  //   await fetchAPI("/request-price-forms", "", {
-  //     body: JSON.stringify({ data }),
-  //     method: "POST",
-  //     next: { revalidate: null }
-  //   }).then(() => {
-  //     toasty({
-  //       status: "success",
-  //       message: props.priorityLanguage === "ru"
-  //         ? "Сообщение отправлено успешно"
-  //         : "Message sent successfully"
-  //     });
-  //     reset();
-  //   }).catch(() => {
-  //     toasty({
-  //       status: "error",
-  //       message: props.priorityLanguage === "ru"
-  //         ? "Ошибка отправки"
-  //         : "Sending error"
-  //     });
-  //   })
-  // }
+    useEffect(() => {
+      if (formState.status === true) {
+        toasty({
+          status: "success",
+          message: props.priorityLanguage === "ru"
+            ? "Сообщение отправлено успешно"
+            : "Message sent successfully"
+        });
+        reset()
+      }
+      if (formState.status === false) {
+        toasty({
+          status: "error",
+          message: props.priorityLanguage === "ru"
+            ? "Ошибка отправки"
+            : "Sending error"
+        });
+      }
+    }, [formState])
 
   return (
     <form
-      // action={formAction}
-      action={priceFormAction}
-      // onSubmit={handleSubmit(onSubmit)}
+      action={formAction}
       id="request-form"
       className="request-form"
     >
@@ -77,27 +71,27 @@ export function Form(props: {
         type="text"
         register={register}
         name="fullname"
-        error={get(errors, "fullname")?.message}
+        error={getError("fullname")}
       />
       <InputField
         placeholder={props.priorityLanguage === "ru" ? "Почта" : "E-mail"}
         type="email"
         register={register}
         name="email"
-        error={get(errors, "email")?.message}
+        error={getError("email")}
       />
       <InputField
         placeholder={props.priorityLanguage === "ru" ? "Номер телефона" : "Phone number"}
         type="string"
         register={register}
         name="phone"
-        error={get(errors, "phone")?.message}
+        error={getError("phone")}
       />
       <TextareaField
         placeholder={props.priorityLanguage === "ru" ? "Комментарий" : "Comment"}
         register={register}
         name="comment"
-        error={get(errors, "comment")?.message}
+        error={getError("comment")}
       />
       <SubmitButton>{props.formFields.button}</SubmitButton>
     </form> 
