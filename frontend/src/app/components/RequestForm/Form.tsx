@@ -13,7 +13,8 @@ import { toasty } from "@/app/components/toasty";
 import { SubmitButton } from "./SubmitButton";
 import { FormWrapper } from "./FormWrapper";
 import { useActionState } from "react";
-import { priceFormAction } from "./priceformAction";
+import { priceFormAction } from "./priceFormAction";
+import { useFormStatus } from "react-dom";
 
 export function Form(props: {
   formFields: RequestFormFieldsModel
@@ -30,12 +31,15 @@ export function Form(props: {
     resolver: yupResolver(schemaFormResolver)
   });
 
-  const [formState, formAction] = useActionState(priceFormAction, {
-    fullname: "",
-    email: "",
-    phone: "",
-    comment: ""
-  });
+  const status = useFormStatus();
+
+  // console.log("status: ", status);
+  // const [formState, formAction] = useActionState(priceFormAction, {
+  //   fullname: "",
+  //   email: "",
+  //   phone: "",
+  //   comment: ""
+  // });
 
   // const onSubmit: SubmitHandler<RequestFormModel> = async (data: RequestFormModel) => {
   //   await fetchAPI("/request-price-forms", "", {
@@ -62,7 +66,8 @@ export function Form(props: {
 
   return (
     <form
-      action={formAction}
+      // action={formAction}
+      action={priceFormAction}
       // onSubmit={handleSubmit(onSubmit)}
       id="request-form"
       className="request-form"

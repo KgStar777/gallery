@@ -23,7 +23,9 @@ export default async function Exhibitions() {
         ? "Выставки"
         : "Exhibitions"} />
       <div className="flex-row w-full px-[7%] py-[2rem]">
-        {exgibitionData?.data.map((ex, index) => {
+        {exgibitionData?.data
+        .sort((a, b) => parseInt(a.year.split("-")[0]) - parseInt(b.year.split("-")[0]))
+        .map((ex, index) => {
           const isReverse = index % 2 === 0
           if (mobileCheck) {
             return (

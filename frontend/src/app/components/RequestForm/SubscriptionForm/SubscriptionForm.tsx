@@ -10,7 +10,9 @@ import { isMobile } from "@/app/utils/isMobile";
 import { schemaSubscriptionFormResolver } from "../validation/schemaSubscriptionFormResolver";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useActionState } from "react";
-import { subscriptionFormAction } from "./SubscriptionFormAction";
+import { subscriptionFormAction } from "./subscriptionFormAction";
+import { useFormStatus } from "react-dom";
+// import { subscriptionFormAction } from "./SubscriptionFormAction";
 
 type SubscriptionFormModel = {
   name: string,
@@ -33,11 +35,15 @@ export function SubscriptionForm(props: {
   } = useForm<SubscriptionFormModel>({
     resolver: yupResolver(schemaSubscriptionFormResolver)
   })
+
+    const status = useFormStatus();
+  
+    // console.log("status: ", status);
   // eslint-disable-next-line
-  const [formState, formAction] = useActionState(subscriptionFormAction, {
-    name: "",
-    email: "",
-  });
+  // const [formState, formAction] = useActionState(subscriptionFormAction, {
+  //   name: "",
+  //   email: "",
+  // });
 
   const onSubmit: SubmitHandler<SubscriptionFormModel> = async (data: SubscriptionFormModel) => {
 
@@ -72,7 +78,8 @@ export function SubscriptionForm(props: {
         : "Subscribe to news"}
       </h3>
       <form
-        action={formAction}
+        // action={formAction}
+        action={subscriptionFormAction}
         className={"subscription-form"
           // props.isMobile
           //   ? "subscription-form__mobile"

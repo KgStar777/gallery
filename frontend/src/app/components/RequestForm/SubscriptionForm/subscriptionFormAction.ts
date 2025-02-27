@@ -1,9 +1,10 @@
 "use server";
 
 import { fetchAPI } from "@/app/utils/fetch-api";
-import { toasty } from "../../toasty";
+// import { toasty } from "../../toasty";
 
-export async function subscriptionFormAction(prevState: any, formData: FormData) {
+// export async function subscriptionFormAction(prevState: any, formData: FormData) {
+export async function subscriptionFormAction(formData: FormData) {
   console.log("Hello From Register User Action");
 
   const fields = {
@@ -16,30 +17,32 @@ export async function subscriptionFormAction(prevState: any, formData: FormData)
   console.log("#############");
 
     await fetchAPI("/subscription-forms", "", {
-      body: JSON.stringify({ ...fields }),
+      body: JSON.stringify({ data: fields }),
       method: "POST",
-      next: { revalidate: null }
-    }, true).then(() => {
-      toasty({
-        status: "success",
-        message: "ru"
-        // message: props.priorityLanguage === "ru"
-        //   ? "Сообщение отправлено успешно"
-        //   : "Message sent successfully"
-      });
+      // next: { revalidate: null }
+    }).then((response) => {
+      console.log("ok", response)
+      // toasty({
+      //   status: "success",
+      //   message: "ru"
+      //   // message: props.priorityLanguage === "ru"
+      //   //   ? "Сообщение отправлено успешно"
+      //   //   : "Message sent successfully"
+      // });
       // reset();
-    }).catch(() => {
-      toasty({
-        status: "error",
-        message: "ru"
-        // message: props.priorityLanguage === "ru"
-        //   ? "Ошибка отправки"
-        //   : "Sending error"
-      });
+    }).catch((err) => {
+      console.log("!ok", err)
+      // toasty({
+      //   status: "error",
+      //   message: "ru"
+      //   // message: props.priorityLanguage === "ru"
+      //   //   ? "Ошибка отправки"
+      //   //   : "Sending error"
+      // });
     })
 
-  return {
-    ...prevState,
-    data: fields,
-  };
+  // return {
+  //   // ...prevState,
+  //   ...fields,
+  // };
 }
