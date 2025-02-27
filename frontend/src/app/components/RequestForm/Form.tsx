@@ -12,6 +12,8 @@ import { fetchAPI } from "@/app/utils/fetch-api";
 import { toasty } from "@/app/components/toasty";
 import { SubmitButton } from "./SubmitButton";
 import { FormWrapper } from "./FormWrapper";
+import { useActionState } from "react";
+import { priceFormAction } from "./priceformAction";
 
 export function Form(props: {
   formFields: RequestFormFieldsModel
@@ -28,31 +30,43 @@ export function Form(props: {
     resolver: yupResolver(schemaFormResolver)
   });
 
-  const onSubmit: SubmitHandler<RequestFormModel> = async (data: RequestFormModel) => {
-    await fetchAPI("/request-price-forms", "", {
-      body: JSON.stringify({ data }),
-      method: "POST",
-      next: { revalidate: null }
-    }).then(() => {
-      toasty({
-        status: "success",
-        message: props.priorityLanguage === "ru"
-          ? "Сообщение отправлено успешно"
-          : "Message sent successfully"
-      });
-      reset();
-    }).catch(() => {
-      toasty({
-        status: "error",
-        message: props.priorityLanguage === "ru"
-          ? "Ошибка отправки"
-          : "Sending error"
-      });
-    })
-  }
+  const [formState, formAction] = useActionState(priceFormAction, {
+    fullname: "",
+    email: "",
+    phone: "",
+    comment: ""
+  });
+
+  // const onSubmit: SubmitHandler<RequestFormModel> = async (data: RequestFormModel) => {
+  //   await fetchAPI("/request-price-forms", "", {
+  //     body: JSON.stringify({ data }),
+  //     method: "POST",
+  //     next: { revalidate: null }
+  //   }).then(() => {
+  //     toasty({
+  //       status: "success",
+  //       message: props.priorityLanguage === "ru"
+  //         ? "Сообщение отправлено успешно"
+  //         : "Message sent successfully"
+  //     });
+  //     reset();
+  //   }).catch(() => {
+  //     toasty({
+  //       status: "error",
+  //       message: props.priorityLanguage === "ru"
+  //         ? "Ошибка отправки"
+  //         : "Sending error"
+  //     });
+  //   })
+  // }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} id="request-form" className="request-form">
+    <form
+      action={formAction}
+      // onSubmit={handleSubmit(onSubmit)}
+      id="request-form"
+      className="request-form"
+    >
       <InputField
         placeholder={props.priorityLanguage === "ru" ? "Имя" : "Name"}
         type="text"

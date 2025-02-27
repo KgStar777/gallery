@@ -9,11 +9,17 @@ import { SubmitButton } from "../SubmitButton";
 import { isMobile } from "@/app/utils/isMobile";
 import { schemaSubscriptionFormResolver } from "../validation/schemaSubscriptionFormResolver";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useActionState } from "react";
+import { subscriptionFormAction } from "./SubscriptionFormAction";
 
 type SubscriptionFormModel = {
   name: string,
   email: string,
 }
+
+// new class SubscriptionFormObj extends SubscriptionFormModel({
+
+// })
 
 export function SubscriptionForm(props: {
   isMobile: boolean
@@ -27,28 +33,34 @@ export function SubscriptionForm(props: {
   } = useForm<SubscriptionFormModel>({
     resolver: yupResolver(schemaSubscriptionFormResolver)
   })
+  // eslint-disable-next-line
+  const [formState, formAction] = useActionState(subscriptionFormAction, {
+    name: "",
+    email: "",
+  });
 
   const onSubmit: SubmitHandler<SubscriptionFormModel> = async (data: SubscriptionFormModel) => {
-    await fetchAPI("/subscription-forms", "", {
-      body: JSON.stringify({ data }),
-      method: "POST",
-      next: { revalidate: null }
-    }, true).then(() => {
-      toasty({
-        status: "success",
-        message: props.priorityLanguage === "ru"
-          ? "Сообщение отправлено успешно"
-          : "Message sent successfully"
-      });
-      reset();
-    }).catch(() => {
-      toasty({
-        status: "error",
-        message: props.priorityLanguage === "ru"
-          ? "Ошибка отправки"
-          : "Sending error"
-      });
-    })
+
+    // await fetchAPI("/subscription-forms", "", {
+    //   body: JSON.stringify({ data }),
+    //   method: "POST",
+    //   next: { revalidate: null }
+    // }, true).then(() => {
+    //   toasty({
+    //     status: "success",
+    //     message: props.priorityLanguage === "ru"
+    //       ? "Сообщение отправлено успешно"
+    //       : "Message sent successfully"
+    //   });
+    //   reset();
+    // }).catch(() => {
+    //   toasty({
+    //     status: "error",
+    //     message: props.priorityLanguage === "ru"
+    //       ? "Ошибка отправки"
+    //       : "Sending error"
+    //   });
+    // })
   }
 
 
@@ -60,12 +72,14 @@ export function SubscriptionForm(props: {
         : "Subscribe to news"}
       </h3>
       <form
+        action={formAction}
         className={"subscription-form"
           // props.isMobile
           //   ? "subscription-form__mobile"
           //   : "subscription-form"
         }
-        onSubmit={handleSubmit(onSubmit)}>
+        // onSubmit={handleSubmit(onSubmit)}
+      >
         {/* {props.isMobile
           ? (
           <div className="subscription-form__fields">
