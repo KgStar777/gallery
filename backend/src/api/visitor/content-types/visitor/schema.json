@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visitors",
+  "info": {
+    "singularName": "visitor",
+    "pluralName": "visitors",
+    "displayName": "visitor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ip": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "biginteger"
+    },
+    "longitude": {
+      "type": "biginteger"
+    },
+    "userAgent": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "referrer": {
+      "type": "string"
+    }
+  }
+}

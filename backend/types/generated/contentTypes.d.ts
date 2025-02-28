@@ -840,6 +840,42 @@ export interface ApiSubscriptionFormSubscriptionForm
   };
 }
 
+export interface ApiVisitorVisitor extends Struct.CollectionTypeSchema {
+  collectionName: 'visitors';
+  info: {
+    description: '';
+    displayName: 'visitor';
+    pluralName: 'visitors';
+    singularName: 'visitor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    city: Schema.Attribute.String;
+    country: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ip: Schema.Attribute.String;
+    language: Schema.Attribute.String;
+    latitude: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::visitor.visitor'
+    > &
+      Schema.Attribute.Private;
+    longitude: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
+    referrer: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userAgent: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1359,6 +1395,7 @@ declare module '@strapi/strapi' {
       'api::request-form-field.request-form-field': ApiRequestFormFieldRequestFormField;
       'api::request-price-form.request-price-form': ApiRequestPriceFormRequestPriceForm;
       'api::subscription-form.subscription-form': ApiSubscriptionFormSubscriptionForm;
+      'api::visitor.visitor': ApiVisitorVisitor;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
