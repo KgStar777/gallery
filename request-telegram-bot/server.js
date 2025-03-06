@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 // Загружаем переменные из .env
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const ALLOWED_USERS = process.env.ALLOWED_USERS.split(',').map(id => parseInt(id, 10));
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+// const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const PORT = process.env.PORT || 3124;
 
 // Создаём бота
@@ -24,14 +24,14 @@ app.post('/webhook', async (req, res) => {
             return res.status(400).send('Нет данных');
         }
 
-        const message = `📩 *Новая заявка!*\n\n🆔 ID: ${request.id}\n📅 Дата: ${request.createdAt}\n\n`;
+        const message = `📩 *Новая заявка!*\n\n🆔 ID: ${req.id}\n📅 Дата: ${req.createdAt}\n\n`;
 
         if (data.model === "subscription-form") {
-          message = message + `Имя: ${request.name}\n Емайл: ${request.email}`
+          message = message + `Имя: ${req?.name}\n Емайл: ${req?.email}`
         }
 
         if (data.model === "request-price-form") {
-          message = message + `Имя: ${request.fullname}\n Емайл: ${request.email}\т Телефон: ${request.phone}\n Комментрий: ${request.comment}`
+          message = message + `Имя: ${req?.fullname}\n Емайл: ${req?.email}\т Телефон: ${req?.phone}\n Комментрий: ${req?.comment}`
         }
 
         for (const uId of ALLOWED_USERS) {
