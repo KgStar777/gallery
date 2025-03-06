@@ -24,21 +24,22 @@ app.post('/webhook', async (req, res) => {
             return res.status(400).send('Нет данных');
         }
 
-        if (data.model === "subscription-form") {
+        const message = `📩 *Новая заявка!*\n\n🆔 ID: ${request.id}\n📅 Дата: ${request.createdAt}\n\n`;
 
+        if (data.model === "subscription-form") {
+          message = message + `Имя: ${request.name}\n Емайл: ${request.email}`
         }
 
         if (data.model === "request-price-form") {
-
+          message = message + `Имя: ${request.fullname}\n Емайл: ${request.email}\т Телефон: ${request.phone}\n Комментрий: ${request.comment}`
         }
 
-        const request = data.entry;
+        for (const uId of ALLOWED_USERS) {
+            bot.telegram.sendMessage(uId, message, {
+                parse_mode: "Markdown"
+            })
 
-        const message = `📩 *Новая заявка!*\n\n🆔 ID: ${request.id}\n📅 Дата: ${request.createdAt}\n\n✍️ *Детали:*\n${JSON.stringify(request, null, 2)}`;
-
-        bot.telegram.sendMessage(TELEGRAM_CHAT_ID, message, {
-            parse_mode: "Markdown"
-        })
+        }
 
         res.status(200).send('Webhook обработан');
     } catch (error) {

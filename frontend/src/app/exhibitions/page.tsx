@@ -1,7 +1,8 @@
-import { VideoLayout } from "@/app/components/VideoLayout";
-import { getExgibition } from "@/app/services/pageService";
 import { Fragment } from "react";
 import { isEmpty } from "lodash";
+
+import { VideoLayout } from "@/app/components/VideoLayout";
+import { getExgibition } from "@/app/services/pageService";
 import { useHeaders } from "@/app/hooks/useHeaders";
 
 export default async function Exhibitions() {
@@ -12,10 +13,7 @@ export default async function Exhibitions() {
       description: string;
       d: string;
     }>
-    
-  } = await getExgibition({
-    language: priorityLanguage
-  });
+  } = await getExgibition({ language: priorityLanguage });
 
   return (
     <Fragment>

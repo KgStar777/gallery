@@ -1,94 +1,88 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import localFont from "next/font/local";
-import Link from "next/link";
-import { AppProps } from "next/app";
-// import { Rubik, Rubik_80s_Fade } from "next/font/google";
 import { ToastContainer, toast } from 'react-toastify';
 
-import { Header } from "./components/Header";
-import { UserContextProvider } from "./context/UserContext";
+// import { UserContextProvider } from "./context/UserContext";
 import { GlobalStoreProvider } from "./providers/global-store-provider";
+import { useHeaders } from "./hooks/useHeaders";
+import { getInfo } from "./services/imageService";
+import { getStrapiURL } from "./utils/api-helpers";
 
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
-import { getProprityLanguages } from "./utils/getProprityLanguages";
-import { headers } from "next/headers";
-import { useHeaders } from "./hooks/useHeaders";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-// const rubikLight = localFont({
-//   src: "./fonts/Rubik-Light.woff",
-//   variable: "--font-rubik-light",
-//   weight: "100 900",
-// });
-
-// const rubikLightItalic = localFont({
-//   src: "./fonts/Rubik-Light.woff",
-//   variable: "--font-rubik-light",
-//   weight: "100 900",
-// });
-
-const contextClass = {
-  success: "bg-blue-600",
-  error: "bg-red-600",
-  info: "bg-gray-600",
-  warning: "bg-orange-400",
-  default: "bg-indigo-600",
-  dark: "bg-white-600 font-gray-300",
-};
-
-// const rubik = Rubik({
-//   subsets: ['latin', 'cyrillic'],
-//   display: 'swap',
-//   weight: ['400', '700', '900'],
-//   style: ['normal', 'italic'],
-// });
-
-// const rubik80 = Rubik({
-//   subsets: ['latin', 'cyrillic'],
-//   display: 'swap',
-//   weight: ['300', '400'],
-//   style: ['normal', 'italic'],
-// });
 
 const meta: {
   [key: string]: Metadata
 } = {
   ru: {
-    title: "Художественная онлайн галерея Алёны Сычёвой",
-    description: "Главная",
+    title: "Художественная онлайн-галерея Алёны Сычёвой",
+    description: "Галерея. Главная страница",
+    keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки"],
+    alternates: {
+      canonical: process.env.NEXT_API_URL,
+    },
+    openGraph: {
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Главная страница",
+      url: process.env.NEXT_API_URL,
+      siteName: "Художественная онлайн-галерея Алёны Сычёвой",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Главная страница",
+    },
   },
   en: {
     title: "Alena Sycheva online gallery",
-    description: "Main page"
+    description: "Gallery. Main page",
+    keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
+    alternates: {
+      canonical: process.env.NEXT_API_URL,
+    },
+    openGraph: {
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Main page",
+      url: process.env.NEXT_API_URL,
+      siteName: "Alena Sycheva online gallery",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Main page",
+    },
   },
 }
 
-export async function generateMetadata(
-  // parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { priorityLanguage } = useHeaders();
  
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || []
   const data = meta[priorityLanguage]
+  const info = await getInfo({ language: priorityLanguage });
   return {
-    title: data?.title,
-    description: data?.description,
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    ...data,
+    twitter: {
+      ...data.twitter,
+      images: getStrapiURL(info.authorImg.url)
+    },
+    openGraph: {
+      ...data.openGraph,
+      images: [
+        {
+          url: getStrapiURL(info.authorImg.url),
+          width: info.authorImg.width,
+          height: info.authorImg.height,
+          alt: info.authorImg?.alt
+        }
+      ]
+    },
+    robots: "index, follow",
   }
 }
 
@@ -100,10 +94,7 @@ export default function RootLayout({
   return (
     // <html lang="en">
     <html>
-        {/* <body className={`${geistSans.variable} ${geistMono.variable}`}> */}
         {/* <UserContextProvider> */}
-          {/* <body className={`${rubikLight} ${rubikLightItalic} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}> */}
-          {/*  <body className={`${rubik.className} ${rubik80.className} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}> */}
           <body className={`bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
           <ToastContainer
             autoClose={3000}
@@ -112,8 +103,6 @@ export default function RootLayout({
             hideProgressBar={true}
           />
           <GlobalStoreProvider>
-          {/* <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"> */}
-          {/* <main className="relative"> */}
             {children}
           {/* </main> */}
           </GlobalStoreProvider>

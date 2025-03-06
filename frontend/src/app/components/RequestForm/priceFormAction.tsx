@@ -9,7 +9,6 @@ const schemaSubscriptionForm = z.object({
   email: z.string().email(),
   phone: z.string().min(10),
   comment: z.string().optional(),
-
 })
 
 export async function subscriptionFormService(formData: any) {

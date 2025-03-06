@@ -1,39 +1,82 @@
 import { Fragment } from "react";
-import { Metadata, ResolvingMetadata } from "next";
-import { headers } from "next/headers";
+import { Metadata } from "next";
 
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
-import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
 import { useHeaders } from "@/app/hooks/useHeaders";
+import { ContactsInfoModel } from "@/app/models/ImageGalleryModel";
+import { getContanctsPageInfo } from "@/app/services/imageService";
+import { getStrapiURL } from "@/app/utils/api-helpers";
 
-const meta: {
-  [key: string]: Metadata
-} = {
+const meta: { [key: string]: Metadata } = {
   ru: {
-    title: "Художественная онлайн галерея Алёны Сычёвой",
-    description: "Биография"
+    title: "Художественная онлайн-галерея Алёны Сычёвой",
+    description: "Галерея. Биография",
+    keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки", "bio", "био", "биография"],
+    alternates: {
+      canonical: process.env.NEXT_API_URL,
+    },
+    openGraph: {
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Главная страница",
+      url: process.env.NEXT_API_URL,
+      siteName: "Художественная онлайн-галерея Алёны Сычёвой",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Главная страница",
+    },
   },
   en: {
     title: "Alena Sycheva online gallery",
-    description: "Biography"
+    description: "Gallery. Biography",
+    keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
+    alternates: {
+      canonical: process.env.NEXT_API_URL,
+    },
+    openGraph: {
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Main page",
+      url: process.env.NEXT_API_URL,
+      siteName: "Alena Sycheva online gallery",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Main page",
+    },
   },
 }
 
-export async function generateMetadata(
-  // parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { priorityLanguage, mobileCheck } = useHeaders();
-
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || []
   const data = meta[priorityLanguage]
+  const contacts: ContactsInfoModel = await getContanctsPageInfo({ language: priorityLanguage });
+  
   return {
-    title: data?.title,
-    description: data?.description,
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    ...data,
+    twitter: {
+      ...data.twitter,
+      images: getStrapiURL(contacts.contactImage.url),
+    },
+    openGraph: {
+      ...data.openGraph,
+      images: [
+        {
+          url: getStrapiURL(contacts.contactImage.url),
+          width: contacts.contactImage.width,
+          height: contacts.contactImage.height,
+          alt: contacts.contactImage.caption
+        }
+      ]
+    }
   }
 }
 
@@ -42,7 +85,7 @@ export default function BiographyLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    const { priorityLanguage } = useHeaders();
+  const { priorityLanguage } = useHeaders();
  
   return (
     <Fragment>
