@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 // Загружаем переменные из .env
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -16,6 +16,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/webhook', async (req, res) => {
+  console.log("req: ", req);
     try {
         const data = req.body;
 
@@ -24,14 +25,14 @@ app.post('/webhook', async (req, res) => {
             return res.status(400).send('Нет данных');
         }
 
-        const message = `📩 *Новая заявка!*\n\n🆔 ID: ${req.id}\n📅 Дата: ${req.createdAt}\n\n`;
+        let message = `📩 *Новая заявка!*\n\n🆔 ID: ${data.id}\n📅 Дата: ${req.createdAt}\n\n`;
 
         if (data.model === "subscription-form") {
-          message = message + `Имя: ${req?.name}\n Емайл: ${req?.email}`
+          message = message + `Имя: ${data.entry?.name}\n Емайл: ${data.entry?.email}`
         }
 
         if (data.model === "request-price-form") {
-          message = message + `Имя: ${req?.fullname}\n Емайл: ${req?.email}\т Телефон: ${req?.phone}\n Комментрий: ${req?.comment}`
+          message = message + `Имя: ${data.entry?.fullname}\n Емайл: ${data.entry?.email}\т Телефон: ${data.entry?.phone}\n Комментрий: ${data.entry?.comment}`
         }
 
         for (const uId of ALLOWED_USERS) {
