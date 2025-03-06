@@ -16,7 +16,6 @@ const app = express();
 app.use(express.json());
 
 app.post('/webhook', async (req, res) => {
-  console.log("req: ", req);
     try {
         const data = req.body;
 
@@ -25,7 +24,17 @@ app.post('/webhook', async (req, res) => {
             return res.status(400).send('Нет данных');
         }
 
-        let message = `📩 *Новая заявка!*\n\n🆔 ID: ${data.id}\n📅 Дата: ${req.createdAt}\n\n`;
+        const date = new Date(data.entry?.createdAt);
+        const formattedDate = date.toLocaleDateString("ru-RU", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        }) + " " + date.toLocaleTimeString("ru-RU", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+        let message = `📩 *Новая заявка!*\n\n🆔 ID: ${data.entry?.id}\n📅 Дата: ${formattedDate}\n\n`;
 
         if (data.model === "subscription-form") {
           message = message + `Имя: ${data.entry?.name}\n Емайл: ${data.entry?.email}`
