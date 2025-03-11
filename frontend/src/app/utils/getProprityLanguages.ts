@@ -13,7 +13,7 @@ export function getProprityLanguages(acceptLanguage: string, available: string[]
 
   const languagePriority: { [key: string]: number } = {};
 
-  languages.forEach(lang => {
+  languages?.forEach(lang => {
       const parts = lang.split(';');
       const language = parts[0].trim();
 

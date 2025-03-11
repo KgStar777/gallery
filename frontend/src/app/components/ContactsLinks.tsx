@@ -17,7 +17,7 @@ export function ContactsLinks(props: IContactsLinksProps) {
         { name: "watsapp", link: "https://wa.me/79996713190" },
     ];
 
-    contacts.forEach((contact: {
+    contacts?.forEach((contact: {
       name: string;
       link: string;
     }) => {
