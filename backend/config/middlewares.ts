@@ -5,7 +5,7 @@ export default [
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
+      // enabled: true,
       origin: [process.env.PUBLIC_API_URL],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization'],

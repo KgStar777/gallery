@@ -1,6 +1,6 @@
-import type { Metadata, ResolvingMetadata } from "next";
-import localFont from "next/font/local";
-import { ToastContainer, toast } from 'react-toastify';
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { ToastContainer } from 'react-toastify';
 
 // import { UserContextProvider } from "./context/UserContext";
 import { GlobalStoreProvider } from "./providers/global-store-provider";
@@ -11,6 +11,7 @@ import { headers } from "next/headers";
 
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
+import { fetchAPI } from "./utils/fetch-api";
 
 const meta: {
   [key: string]: Metadata
@@ -20,12 +21,12 @@ const meta: {
     description: "Галерея. Главная страница",
     keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки"],
     alternates: {
-      canonical: process.env.NEXT_API_URL,
+      canonical: process.env.NEXT_PUBLIC_API_URL,
     },
     openGraph: {
       title: "Художественная онлайн-галерея Алёны Сычёвой",
       description: "Галерея. Главная страница",
-      url: process.env.NEXT_API_URL,
+      url: process.env.NEXT_PUBLIC_API_URL,
       siteName: "Художественная онлайн-галерея Алёны Сычёвой",
       type: "website",
       locale: "ru_RU",
@@ -42,12 +43,12 @@ const meta: {
     description: "Gallery. Main page",
     keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
     alternates: {
-      canonical: process.env.NEXT_API_URL,
+      canonical: process.env.NEXT_PUBLIC_API_URL,
     },
     openGraph: {
       title: "Alena Sycheva online gallery",
       description: "Gallery. Main page",
-      url: process.env.NEXT_API_URL,
+      url: process.env.NEXT_PUBLIC_API_URL,
       siteName: "Alena Sycheva online gallery",
       type: "website",
       locale: "ru_RU",
@@ -84,6 +85,9 @@ export async function generateMetadata(): Promise<Metadata> {
       ]
     },
     robots: "index, follow",
+    icons: {
+      icon: '/icon.png',
+    },
   }
 }
 
@@ -92,66 +96,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const requestHeaders = headers();
-  const { priorityLanguage } = useHeaders();
 
-  const data = {
-    ip: requestHeaders.get("x-real-ip") || null,
-    country: requestHeaders.get("x-country") || "Неизвестно",
-    city: requestHeaders.get("x-city") || "Неизвестно",
-    lat:  requestHeaders.get("x-latitude") || "0",
-    lon: requestHeaders.get("x-longitude") || "0",
-    userAgent: requestHeaders.get("user-agent") || "Неизвестно",
-    language: requestHeaders.get("accept-language") || "Неизвестно",
-    referrer: requestHeaders.get("referer") || "Direct"
-  }
-
-  const isBot = /bot/i.test(data.userAgent);
-  const strapiToken = process.env.NEXT_PUBLIC_VISITOR;
-
-  if (!isBot && strapiToken && data.ip !== null) {
+  const track = async () => {
       try {
-          const existingVisitorResponse = await fetch(
-              `http://localhost:1337/api/visitors?filters[ip][$eq]=${data.ip}`,
-              {
-                  method: "GET",
-                  headers: {
-                      "Content-Type": "application/json",
-                      "Authorization": `Bearer ${strapiToken}`,
-                  },
-              }
-          );
 
-          const existingVisitorData = await existingVisitorResponse.json();
-
-          console.log("existingVisitorData: ", existingVisitorData);
-
-          if (!existingVisitorData.data || existingVisitorData.data.length === 0) {
-              const response = await fetch("http://localhost:1337/api/visitor", {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json",
-                      "Authorization": `Bearer ${strapiToken}`,
-                  },
-                  body: JSON.stringify({ data }),
-              });
-
-              if (!response.ok) {
-                  throw new Error(`Ошибка HTTP: ${response.status}`);
-              }
-
-              console.log("Данные нового посетителя успешно отправлены.");
-          } else {
-              console.log("Посетитель с таким IP уже существует, запись пропущена.");
-          }
       } catch (error) {
-          console.error("Ошибка отправки данных в Strapi:", error);
+          console.error("Ошибка отправки данных:", error);
       }
-  } else if (isBot) {
-      console.log("Обнаружен бот, запись пропущена.");
-  } else {
-      console.error("Токен Strapi отсутствует.");
-  }
+  };
+
+  track();
+
+  const { priorityLanguage } = useHeaders();
   return (
     <html lang={priorityLanguage}>
         {/* <UserContextProvider> */}

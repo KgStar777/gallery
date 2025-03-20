@@ -18,12 +18,12 @@ const meta: {
     description: "Галерея. Выставки",
     keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки"],
     alternates: {
-      canonical: process.env.NEXT_API_URL,
+      canonical: process.env.NEXT_PUBLIC_API_URL,
     },
     openGraph: {
       title: "Художественная онлайн-галерея Алёны Сычёвой",
       description: "Галерея. Выставки",
-      url: process.env.NEXT_API_URL,
+      url: process.env.NEXT_PUBLIC_API_URL,
       siteName: "Художественная онлайн-галерея Алёны Сычёвой",
       type: "website",
       locale: "ru_RU",
@@ -40,16 +40,16 @@ const meta: {
     description: "Gallery. Exhibitions",
     keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
     alternates: {
-      canonical: process.env.NEXT_API_URL,
+      canonical: process.env.NEXT_PUBLIC_API_URL,
     },
     openGraph: {
       title: "Alena Sycheva online gallery",
       description: "Gallery. Exhibitions",
-      url: process.env.NEXT_API_URL,
+      url: process.env.NEXT_PUBLIC_API_URL,
       siteName: "Alena Sycheva online gallery",
       type: "website",
-      locale: "ru_RU",
-      alternateLocale: ["en_US"],
+      locale: "en_US",
+      alternateLocale: ["ru_RU"],
     },
     twitter: {
       card: "summary_large_image",
@@ -83,7 +83,10 @@ export async function generateMetadata(
           alt: contacts.contactImage.caption
         }
       ]
-    }
+    },
+    icons: {
+      icon: '/icon.png',
+    },
   }
 }
 
