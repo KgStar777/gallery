@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { ToastContainer } from 'react-toastify';
-import { useEffect } from "react";
 
 // import { UserContextProvider } from "./context/UserContext";
 import { GlobalStoreProvider } from "./providers/global-store-provider";
@@ -97,8 +96,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  useEffect(() => {
-    const track = async () => {
+  const track = async () => {
       try {
 
       } catch (error) {
@@ -107,7 +105,6 @@ export default async function RootLayout({
   };
 
   track();
-  }, [])
 
   const { priorityLanguage } = useHeaders();
   return (
