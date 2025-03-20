@@ -1,45 +1,102 @@
+import { Metadata } from "next";
+
 import { getImages } from "@/app/services/imageService";
-// import { Carousel } from "@/app/components/Carousel";
-// import { headers } from 'next/headers';
-// import { isMobile } from '@/app/utils/isMobile';
-// import { CarouselHeader } from "@/app/components/Carousel/CarouselHeader";
-// import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
-import { Metadata, ResolvingMetadata } from "next";
-import { CarouselWrapper } from "../components/Carousel/CarouselWrapper";
+import { CarouselWrapper } from "@/app/components/Carousel/CarouselWrapper";
+import { useHeaders } from "@/app/hooks/useHeaders";
+import { getStrapiURL } from "@/app/utils/api-helpers";
+import { ImageGalleryModel } from "@/app/models/ImageGalleryModel";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { useHeaders } from "@/app/hooks/useHeaders";
+
 
 const meta: {
   [key: string]: Metadata
 } = {
   ru: {
-    title: "Художественная онлайн галерея Алёны Сычёвой",
-    description: "Галерея"
+    title: "Художественная онлайн-галерея Алёны Сычёвой",
+    description: "Галерея. Карусель",
+    keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки"],
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_API_URL,
+    },
+    openGraph: {
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Карусель",
+      url: process.env.NEXT_PUBLIC_API_URL,
+      siteName: "Художественная онлайн-галерея Алёны Сычёвой",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Карусель",
+    },
   },
   en: {
     title: "Alena Sycheva online gallery",
-    description: "Gallery"
+    description: "Gallery. Slider",
+    keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_API_URL,
+    },
+    openGraph: {
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Slider",
+      url: process.env.NEXT_PUBLIC_API_URL,
+      siteName: "Alena Sycheva online gallery",
+      type: "website",
+      locale: "en_US",
+      alternateLocale: ["ru_RU"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Slider",
+    },
   },
 }
 
-export async function generateMetadata(
-  // parent: ResolvingMetadata
+export async function generateMetadata({
+  searchParams
+}: { searchParams: { id: string, name: string }}
 ): Promise<Metadata> {
   const { priorityLanguage, mobileCheck } = useHeaders();
- 
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || []
-  const data = meta[priorityLanguage]
-  return {
-    title: data?.title,
-    description: data?.description,
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
-  }
+
+  const data = meta[priorityLanguage];
+  const images: Array<ImageGalleryModel> = await getImages({ language: priorityLanguage });
+  const idx = images?.findIndex((image: { Title: string }) => 
+    image.Title.trim()
+    .toLowerCase()
+    .replace(/ /g, "-") === searchParams?.name);
+    const currentIdx = idx !== -1 ? idx : 0;
+
+    const mutateData = {
+      ...data,
+      twitter: {
+        ...data.twitter,
+        images: getStrapiURL(images?.[currentIdx].Paint.url),
+      },
+      openGraph: {
+        ...data.openGraph,
+        images: [
+          {
+            url: getStrapiURL(images?.[currentIdx].Paint.url),
+            width: images?.[currentIdx].Paint.width,
+            height: images?.[currentIdx].Paint.height,
+            alt: images?.[currentIdx].Paint.caption
+          }
+        ]
+      },
+      icons: {
+        icon: '/icon.png',
+      },
+    }
+  
+  return mutateData;
 }
 
 export const revalidate = 60;
@@ -53,7 +110,7 @@ export default async function Gallery({
   const name = searchParams.name;
   const { priorityLanguage, mobileCheck } = useHeaders();
 
-  const images = await getImages({
+  const images: ImageGalleryModel[] = await getImages({
     language: priorityLanguage,
   });
 

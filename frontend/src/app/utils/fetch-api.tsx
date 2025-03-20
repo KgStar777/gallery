@@ -7,7 +7,6 @@ import { getStrapiURL } from "./api-helpers";
       options = {},
       isClient = false
     ) {
-      console.log("options: ", options);
       try {
         // Merge default and user options
         const mergedOptions = {
@@ -25,7 +24,7 @@ import { getStrapiURL } from "./api-helpers";
           isClient
         )}`;
     
-        console.log("requestUrl: ", requestUrl)
+        // console.log("requestUrl: ", requestUrl)
         // Trigger API call
         const response = await fetch(requestUrl, mergedOptions);
         const data = await response.json();
