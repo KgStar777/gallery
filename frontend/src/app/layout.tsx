@@ -109,7 +109,7 @@ export default async function RootLayout({
   }
 
   const isBot = /bot/i.test(data.userAgent);
-  const strapiToken = process.env.NEXT_PUBLIC_VISITOR;
+  const strapiToken = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!isBot && strapiToken && data.ip !== null) {
       try {
@@ -129,7 +129,7 @@ export default async function RootLayout({
           console.log("existingVisitorData: ", existingVisitorData);
 
           if (!existingVisitorData.data || existingVisitorData.data.length === 0) {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/visitor`, {
+              const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/visitors`, {
                   method: "POST",
                   headers: {
                       "Content-Type": "application/json",
