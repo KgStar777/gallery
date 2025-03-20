@@ -1,6 +1,7 @@
-import type { Metadata, ResolvingMetadata } from "next";
-import localFont from "next/font/local";
-import { ToastContainer, toast } from 'react-toastify';
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { ToastContainer } from 'react-toastify';
+import { useEffect } from "react";
 
 // import { UserContextProvider } from "./context/UserContext";
 import { GlobalStoreProvider } from "./providers/global-store-provider";
@@ -10,6 +11,7 @@ import { getStrapiURL } from "./utils/api-helpers";
 
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
+import { fetchAPI } from "./utils/fetch-api";
 
 const meta: {
   [key: string]: Metadata
@@ -89,11 +91,24 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  useEffect(() => {
+    const track = async () => {
+      try {
+
+      } catch (error) {
+          console.error("Ошибка отправки данных:", error);
+      }
+  };
+
+  track();
+  }, [])
+
   const { priorityLanguage } = useHeaders();
   return (
     <html lang={priorityLanguage}>
