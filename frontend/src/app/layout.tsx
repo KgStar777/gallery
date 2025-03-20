@@ -129,7 +129,7 @@ export default async function RootLayout({
           console.log("existingVisitorData: ", existingVisitorData);
 
           if (!existingVisitorData.data || existingVisitorData.data.length === 0) {
-              const response = await fetch("http://localhost:1337/api/visitor", {
+              const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/visitor`, {
                   method: "POST",
                   headers: {
                       "Content-Type": "application/json",
