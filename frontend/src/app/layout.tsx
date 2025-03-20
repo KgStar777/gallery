@@ -94,9 +94,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { priorityLanguage } = useHeaders();
   return (
-    // <html lang="en">
-    <html>
+    <html lang={priorityLanguage}>
         {/* <UserContextProvider> */}
           <body className={`bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
           <ToastContainer
