@@ -18,7 +18,7 @@ export default async function Home() {
 
   const { priorityLanguage } = useHeaders();
   
-  const data = await getImages({ language: priorityLanguage });
+  const images = await getImages({ language: priorityLanguage });
   const info = await getInfo({ language: priorityLanguage });
   const form = await getFormFields({ language: priorityLanguage });
 
@@ -26,7 +26,7 @@ export default async function Home() {
     <Fragment>
         <Header />
         <main className="flex flex-col gap-8 row-start-2 items-center">
-          <MainPage priorityLanguage={priorityLanguage} images={data} info={info} />
+          <MainPage priorityLanguage={priorityLanguage} images={images} info={info} />
           <RequestForm formFields={form} />
         </main>
         <Footer isRU={priorityLanguage === "ru"} />

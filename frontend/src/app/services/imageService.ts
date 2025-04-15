@@ -27,7 +27,7 @@ export async function getImages({
 }: {
   language?: string
 }) {
-  let data = await fetch(getStrapiURL(`/api/paint-images?locale=${language}&populate=*`))
+  let data = await fetch(getStrapiURL(`/api/paint-images?locale=${language}&populate=*&pagination[pageSize]=100`))
   let paints = await data.json()
   
   return paints.data;

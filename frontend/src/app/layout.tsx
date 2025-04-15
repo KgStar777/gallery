@@ -11,13 +11,21 @@ import { getStrapiURL } from "./utils/api-helpers";
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
+const keywordsRu = [
+  "Алёна Сычёва", "Алена Сычева", "алена сычева", "алёна сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки", "купить картину", "картины купить", "купить картину недорого", "картины для интерьера", "картины на холсте купить", "купить картину маслом", "современные картины купить", "картины известных художников купить", "купить абстрактную картину", "купить пейзажную картину", "картины для офиса купить", "картины для дома купить", "купить картину онлайн", "заказать картину на заказ", "купить картину в Москве", "купить картину в интернет-магазине", "купить картину с доставкой", "картины для офисов и корпоративных коллекций", "галерея картин", "оригинальные картины для интерьера", "авторские картины", "картины для коллекционеров", "картины для инвестиции", "искусство для инвестиций", "роскошные картины для дома", "современное искусство для интерьера"
+]
+
+const keywordsEn = [
+  "Alyona Sychyova", "Alena Sychova", "gallery", "paint"
+]
+
 const meta: {
   [key: string]: Metadata
 } = {
   ru: {
     title: "Художественная онлайн-галерея Алёны Сычёвой",
     description: "Галерея. Главная страница",
-    keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки"],
+    keywords: keywordsRu,
     alternates: {
       canonical: process.env.NEXT_PUBLIC_API_URL,
     },
@@ -39,7 +47,7 @@ const meta: {
   en: {
     title: "Alena Sycheva online gallery",
     description: "Gallery. Main page",
-    keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
+    keywords: keywordsEn,
     alternates: {
       canonical: process.env.NEXT_PUBLIC_API_URL,
     },
@@ -126,7 +134,7 @@ export default async function RootLayout({
 
           const existingVisitorData = await existingVisitorResponse.json();
 
-          console.log("existingVisitorData: ", existingVisitorData);
+          // console.log("existingVisitorData: ", existingVisitorData);
 
           if (!existingVisitorData.data || existingVisitorData.data.length === 0) {
               const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/visitors`, {
@@ -135,11 +143,11 @@ export default async function RootLayout({
                       "Content-Type": "application/json",
                       "Authorization": `Bearer ${strapiToken}`,
                   },
-                  body: JSON.stringify({ data }),
+                  body: JSON.stringify({ ...data }),
               });
 
               if (!response.ok) {
-                  throw new Error(`Ошибка HTTP: ${response.status}`);
+                  throw new Error(`Ошибка HTTP: ${response.status, response.statusText}`);
               }
 
               console.log("Данные нового посетителя успешно отправлены.");
@@ -154,6 +162,8 @@ export default async function RootLayout({
   } else {
       console.error("Токен Strapi отсутствует.");
   }
+
+  console.log("priorityLanguage: ", priorityLanguage);
 
   return (
     <html lang={priorityLanguage}>
