@@ -169,16 +169,16 @@ export function Carousel({
                   const paint = img.Paint;
                   return (
                     <SwiperSlide
-                      key={img.id}
+                      key={img?.id}
                     >
                       <article className={`carousel-component__wrapper`}>
                         <div className="carousel-component__item swiper-zoom-container">
                           <Image
                             onContextMenu={e => e.preventDefault()}
-                            src={getStrapiURL(paint.url)}
-                            alt={img.Title}
-                            width={paint.width}
-                            height={paint.height}
+                            src={getStrapiURL(paint?.url)}
+                            alt={img?.Title}
+                            width={paint?.width}
+                            height={paint?.height}
                             loading="lazy"
                             className={`h-full w-full max-w-full`}
                           />
@@ -224,7 +224,7 @@ export function Carousel({
                   const paint = img.Paint?.formats?.large ?? img.Paint;
                   return (
                     <>
-                      <SwiperSlide key={img.id}>
+                      <SwiperSlide key={img?.id}>
                         <article
                           className={isFullScreen ? "carousel-component__wrapper-fullscreen" : `carousel-component__wrapper`}
                         >
@@ -244,10 +244,10 @@ export function Carousel({
                             <Image
                               ref={imageRef}
                               onContextMenu={e => e.preventDefault()}
-                              src={getStrapiURL(paint.url)}
-                              alt={img.Title}
-                              width={paint.width}
-                              height={paint.height}
+                              src={getStrapiURL(paint?.url)}
+                              alt={img?.Title}
+                              width={paint?.width}
+                              height={paint?.height}
                               loading="lazy"
                             />
                           </div>
