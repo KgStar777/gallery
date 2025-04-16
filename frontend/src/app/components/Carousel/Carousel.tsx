@@ -7,7 +7,7 @@ import { Pagination, Zoom } from 'swiper/modules';
 
 import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
-import { PaintCuption } from '@/app/components/PaintCaption';
+// import { PaintCuption } from '@/app/components/PaintCaption';
 
 import "swiper/css";
 import "swiper/css/zoom";
@@ -222,6 +222,7 @@ export function Carousel({
             >{
                 images?.length > 0 && images.map((img, idx) => {
                   const paint = img.Paint?.formats?.large ?? img.Paint;
+
                   return (
                     <>
                       <SwiperSlide key={img?.id}>
@@ -256,6 +257,7 @@ export function Carousel({
                               <h2 className="font-light text-lg md:text-lg lg:text-xl">{img?.Title}</h2>
                               {/* <PaintCuption caption={img?.Description[0].children[0].text} /> */}
                               <p className="text-zinc-700 font-light font-sans text-xl">{img?.Description[0].children[0].text}</p>
+                              <p className="text-zinc-700 font-light font-sans text-xl mt-2">{img?.About?.[0]?.children[0].text}</p>
                             </div>
                           )}
                         </article>

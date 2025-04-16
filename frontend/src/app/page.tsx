@@ -1,9 +1,10 @@
-import { MainPage } from "./components/Main";
-import { getFormFields, getImages, getInfo } from "@/app/services/imageService";
 import { Fragment } from "react";
-import { Header } from "./components/Header";
-
 import { headers } from "next/headers";
+import {redirect} from 'next/navigation';
+
+import { getFormFields, getImages, getInfo } from "@/app/services/imageService";
+import { MainPage } from "./components/Main";
+import { Header } from "./components/Header";
 import { getProprityLanguages } from "./utils/getProprityLanguages";
 // import { useGlobalStore } from "./providers/global-store-provider";
 import { RequestForm } from "./components/RequestForm/RequestForm";
@@ -12,24 +13,7 @@ import { useHeaders } from "./hooks/useHeaders";
 
 
 export default async function Home() {
-  // const store = useGlobalStore(
-  //   (state) => state,
-  // );
-
   const { priorityLanguage } = useHeaders();
-  
-  const images = await getImages({ language: priorityLanguage });
-  const info = await getInfo({ language: priorityLanguage });
-  const form = await getFormFields({ language: priorityLanguage });
 
-  return (
-    <Fragment>
-        <Header />
-        <main className="flex flex-col gap-8 row-start-2 items-center">
-          <MainPage priorityLanguage={priorityLanguage} images={images} info={info} />
-          <RequestForm formFields={form} />
-        </main>
-        <Footer isRU={priorityLanguage === "ru"} />
-    </Fragment>
-  );
+  redirect(priorityLanguage);
 }

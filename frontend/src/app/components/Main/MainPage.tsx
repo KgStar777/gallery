@@ -92,7 +92,7 @@ export async function MainPage({
         </Fragment>
       )
     }
-    // cormorantInfant
+    
     const image = info.authorImg.formats?.large ?? info.authorImg;
     return (
         <Fragment>

@@ -24,7 +24,7 @@ export function FullMenu(props: IFullMenuProps) {
     <ul>
       {props.links?.map((link, idx) => (
         <li key={idx}>
-          <Link className={isActiveLink(link.path) ? 'active' : ''} href={link.path}>{
+          <Link className={isActiveLink(link.path) ? 'active' : ''} href={`/${props.priorityLanguage}/${link.path}`}>{
             props.priorityLanguage === "ru"
             ? link.ru
             : link.en

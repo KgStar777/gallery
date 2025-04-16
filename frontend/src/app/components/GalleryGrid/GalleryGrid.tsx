@@ -6,6 +6,7 @@ import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
 import { isEmpty } from 'lodash';
 import { PaintCuption } from '../PaintCaption';
+import { useHeaders } from '@/app/hooks/useHeaders';
 
 
 interface IGalleryProps {
@@ -19,6 +20,7 @@ export function GalleryGrid({
   rowsCount = 3,
   isMobile
 }: IGalleryProps) {
+  const { priorityLanguage } = useHeaders();
   const columnNodes = Array.from({ length: rowsCount }, () => []);
 
   let count = 1;
@@ -45,7 +47,7 @@ export function GalleryGrid({
                   <Link
                     key={pindex}
                     draggable="false"
-                    href={`/gallery?name=${image.Title.trim().toLowerCase().replace(/ /g, "-")}`}
+                    href={`/${priorityLanguage}/gallery?name=${image.Title.trim().toLowerCase().replace(/ /g, "-")}`}
                   >
                     <div key={image.id} className="image-wrapper text-center">
                       {!isEmpty(paint) && (

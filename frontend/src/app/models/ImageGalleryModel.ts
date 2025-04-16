@@ -34,6 +34,12 @@ export interface ImageGalleryModel {
             text: string;
         }>,
     }>,
+    About: Array<{
+        children: Array<{
+            type: string;
+            text: string;
+        }>,
+    }>,
     Paint: ImageModel,
     Title: string;
     id: number;
