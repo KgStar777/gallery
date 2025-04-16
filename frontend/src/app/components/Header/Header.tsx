@@ -14,7 +14,7 @@ const links = [
   {
     en: "Home",
     ru: "Главная",
-    path: "/"
+    path: ""
   },
   {
     en: "Contacts",

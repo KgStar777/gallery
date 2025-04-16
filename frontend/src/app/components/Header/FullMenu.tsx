@@ -18,20 +18,20 @@ export function FullMenu(props: IFullMenuProps) {
 	const isActiveLink = (path: string) => path === pathname;
 
   useHandleContextMenu();
-  
+
   return (
     <nav className="navigation-panel">
-    <ul>
-      {props.links?.map((link, idx) => (
-        <li key={idx}>
-          <Link className={isActiveLink(link.path) ? 'active' : ''} href={`/${props.priorityLanguage}/${link.path}`}>{
-            props.priorityLanguage === "ru"
-            ? link.ru
-            : link.en
-          }</Link>
-        </li>
-      ))}
-    </ul>
+      <ul>
+        {props.links?.map((link, idx) => (
+          <li key={idx}>
+            <Link className={isActiveLink(`/${props.priorityLanguage}${link.path}`) ? 'active' : ''} href={`/${props.priorityLanguage}/${link.path}`}>{
+              props.priorityLanguage === "ru"
+              ? link.ru
+              : link.en
+            }</Link>
+          </li>
+        ))}
+      </ul>
     <ul>
       {/* <LangSelect /> */}
       {/* <LanguageSelector /> */}
