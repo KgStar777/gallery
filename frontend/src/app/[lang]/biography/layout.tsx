@@ -7,12 +7,13 @@ import { useHeaders } from "@/app/hooks/useHeaders";
 import { ContactsInfoModel } from "@/app/models/ImageGalleryModel";
 import { getContanctsPageInfo } from "@/app/services/imageService";
 import { getStrapiURL } from "@/app/utils/api-helpers";
+import { getKeywordsEn, getKeywordsRu } from "@/app/utils/keywords";
 
 const meta: { [key: string]: Metadata } = {
   ru: {
     title: "Художественная онлайн-галерея Алёны Сычёвой",
     description: "Галерея. Биография",
-    keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки", "bio", "био", "биография"],
+    keywords: getKeywordsRu(),
     alternates: {
       canonical: process.env.NEXT_API_URL,
     },
@@ -34,7 +35,7 @@ const meta: { [key: string]: Metadata } = {
   en: {
     title: "Alena Sycheva online gallery",
     description: "Gallery. Biography",
-    keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
+    keywords: getKeywordsEn(),
     alternates: {
       canonical: process.env.NEXT_API_URL,
     },
@@ -44,8 +45,8 @@ const meta: { [key: string]: Metadata } = {
       url: process.env.NEXT_API_URL,
       siteName: "Alena Sycheva online gallery",
       type: "website",
-      locale: "ru_RU",
-      alternateLocale: ["en_US"],
+      locale: "en_US",
+      alternateLocale: ["ru_RU"],
     },
     twitter: {
       card: "summary_large_image",

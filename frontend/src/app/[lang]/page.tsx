@@ -10,14 +10,8 @@ import { RequestForm } from "@/app/components/RequestForm/RequestForm";
 import { Footer } from "@/app/components/Footer";
 import { useHeaders } from "@/app/hooks/useHeaders";
 
+import { getKeywordsEn, getKeywordsRu } from "../utils/keywords";
 
-const keywordsRu = [
-  "Алёна Сычёва", "Алена Сычева", "алена сычева", "алёна сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки", "купить картину", "картины купить", "купить картину недорого", "картины для интерьера", "картины на холсте купить", "купить картину маслом", "современные картины купить", "картины известных художников купить", "купить абстрактную картину", "купить пейзажную картину", "картины для офиса купить", "картины для дома купить", "купить картину онлайн", "заказать картину на заказ", "купить картину в Москве", "купить картину в интернет-магазине", "купить картину с доставкой", "картины для офисов и корпоративных коллекций", "галерея картин", "оригинальные картины для интерьера", "авторские картины", "картины для коллекционеров", "картины для инвестиции", "искусство для инвестиций", "роскошные картины для дома", "современное искусство для интерьера"
-]
-
-const keywordsEn = [
-  "Alyona Sychyova", "Alena Sychova", "gallery", "paint"
-]
 
 const meta: {
   [key: string]: Metadata
@@ -25,7 +19,7 @@ const meta: {
   ru: {
     title: "Художественная онлайн-галерея Алёны Сычёвой",
     description: "Галерея. Главная страница",
-    keywords: keywordsRu,
+     keywords: getKeywordsRu(),
     alternates: {
       canonical: process.env.NEXT_PUBLIC_API_URL,
     },
@@ -47,7 +41,7 @@ const meta: {
   en: {
     title: "Alena Sycheva online gallery",
     description: "Gallery. Main page",
-    keywords: keywordsEn,
+    keywords: getKeywordsEn(),
     alternates: {
       canonical: process.env.NEXT_PUBLIC_API_URL,
     },
@@ -57,8 +51,8 @@ const meta: {
       url: process.env.NEXT_PUBLIC_API_URL,
       siteName: "Alena Sycheva online gallery",
       type: "website",
-      locale: "ru_RU",
-      alternateLocale: ["en_US"],
+      locale: "en_US",
+      alternateLocale: ["ru_RU"],
     },
     twitter: {
       card: "summary_large_image",

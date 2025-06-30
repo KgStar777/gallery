@@ -58,8 +58,8 @@ const meta: {
       url: process.env.NEXT_PUBLIC_API_URL,
       siteName: "Alena Sycheva online gallery",
       type: "website",
-      locale: "ru_RU",
-      alternateLocale: ["en_US"],
+      locale: "en_US",
+      alternateLocale: ["ru_RU"],
     },
     twitter: {
       card: "summary_large_image",

@@ -7,6 +7,7 @@ import { useHeaders } from "@/app/hooks/useHeaders";
 import { ContactsInfoModel } from "@/app/models/ImageGalleryModel";
 import { getContanctsPageInfo } from "@/app/services/imageService";
 import { getStrapiURL } from "@/app/utils/api-helpers";
+import { getKeywordsEn, getKeywordsRu } from "@/app/utils/keywords";
 
 const meta: {
   [key: string]: Metadata
@@ -14,7 +15,7 @@ const meta: {
   ru: {
     title: "Художественная онлайн-галерея Алёны Сычёвой",
     description: "Галерея. Контакты",
-    keywords: ["Алёна Сычёва", "Алена Сычёва", "Сычева", "Сычёва", "художественная", "галерея", "искусство", "выставки"],
+    keywords: getKeywordsRu(),
     alternates: {
       canonical: process.env.NEXT_PUBLIC_API_URL,
     },
@@ -36,7 +37,7 @@ const meta: {
   en: {
     title: "Alena Sycheva online gallery",
     description: "Gallery. Contacts page",
-    keywords: ["Alyona Sychyova", "Alena Sychova", "gallery", "paint"],
+    keywords: getKeywordsEn(),
     alternates: {
       canonical: process.env.NEXT_PUBLIC_API_URL,
     },
