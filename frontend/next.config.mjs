@@ -5,6 +5,9 @@
 // const { i18n } = require("./next-i18next.config");
 
 const nextConfig = {
+  // Включаем standalone режим для Docker
+  // output: 'standalone',
+  
   async headers() {
     return [
       {
@@ -31,12 +34,12 @@ const nextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
-      // {
-      //   protocol: 'http',
-      //   hostname: 'localhost:1337',
-      //   // port: '',
-      //   pathname: '/account123/**/**',
-      // },
+      {
+        protocol: 'http',
+        hostname: 'backend',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
     ],
   },
   reactStrictMode: true,

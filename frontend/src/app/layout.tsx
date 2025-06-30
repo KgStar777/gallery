@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { ToastContainer } from 'react-toastify';
 
@@ -5,10 +6,102 @@ import { ToastContainer } from 'react-toastify';
 import { GlobalStoreProvider } from "./providers/global-store-provider";
 import { useHeaders } from "./hooks/useHeaders";
 import { getInfo } from "./services/imageService";
+import { getStrapiURL } from "./utils/api-helpers";
+import { getKeywordsRu, getKeywordsEn } from "./utils/keywords";
 
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
+const meta: {
+  [key: string]: Metadata
+} = {
+  ru: {
+    title: "Художественная онлайн-галерея Алёны Сычёвой",
+    description: "Галерея. Главная страница",
+    keywords: getKeywordsRu(),
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_API_URL,
+    },
+    openGraph: {
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Главная страница",
+      url: process.env.NEXT_PUBLIC_API_URL,
+      siteName: "Художественная онлайн-галерея Алёны Сычёвой",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Художественная онлайн-галерея Алёны Сычёвой",
+      description: "Галерея. Главная страница",
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/icon.png', type: 'image/png' }
+      ],
+      shortcut: '/favicon.ico',
+      apple: '/icon.png',
+    },
+  },
+  en: {
+    title: "Alena Sycheva online gallery",
+    description: "Gallery. Main page",
+    keywords: getKeywordsEn(),
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_API_URL,
+    },
+    openGraph: {
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Main page",
+      url: process.env.NEXT_PUBLIC_API_URL,
+      siteName: "Alena Sycheva online gallery",
+      type: "website",
+      locale: "ru_RU",
+      alternateLocale: ["en_US"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Alena Sycheva online gallery",
+      description: "Gallery. Main page",
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/icon.png', type: 'image/png' }
+      ],
+      shortcut: '/favicon.ico',
+      apple: '/icon.png',
+    },
+  },
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { priorityLanguage } = useHeaders();
+ 
+  const data = meta[priorityLanguage]
+  const info = await getInfo({ language: priorityLanguage });
+  return {
+    ...data,
+    twitter: {
+      ...data.twitter,
+      images: getStrapiURL(info.authorImg.url)
+    },
+    openGraph: {
+      ...data.openGraph,
+      images: [
+        {
+          url: getStrapiURL(info.authorImg.url),
+          width: info.authorImg.width,
+          height: info.authorImg.height,
+          alt: info.authorImg?.alt
+        }
+      ]
+    },
+    robots: "index, follow",
+  }
+}
 
 export default async function RootLayout({
   children,
@@ -31,11 +124,12 @@ export default async function RootLayout({
 
   const isBot = /bot/i.test(data.userAgent);
   const strapiToken = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
-  if (!isBot && strapiToken && data.ip !== null) {
+  if (!isBot && strapiToken && strapiUrl && data.ip !== null) {
       try {
           const existingVisitorResponse = await fetch(
-              `http://localhost:1337/api/visitors?filters[ip][$eq]=${data.ip}`,
+              `${strapiUrl}/api/visitors?filters[ip][$eq]=${data.ip}`,
               {
                   method: "GET",
                   headers: {
@@ -50,7 +144,7 @@ export default async function RootLayout({
           // console.log("existingVisitorData: ", existingVisitorData);
 
           if (!existingVisitorData.data || existingVisitorData.data.length === 0) {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/visitors`, {
+              const response = await fetch(`${strapiUrl}/api/visitors`, {
                   method: "POST",
                   headers: {
                       "Content-Type": "application/json",
@@ -60,7 +154,7 @@ export default async function RootLayout({
               });
 
               if (!response.ok) {
-                  throw new Error(`Ошибка HTTP: ${response.status, response.statusText}`);
+                  throw new Error(`Ошибка HTTP: ${response.status} ${response.statusText}`);
               }
 
               console.log("Данные нового посетителя успешно отправлены.");
@@ -73,7 +167,7 @@ export default async function RootLayout({
   } else if (isBot) {
       console.log("Обнаружен бот, запись пропущена.");
   } else {
-      console.error("Токен Strapi отсутствует.");
+      console.error("Токен Strapi или URL отсутствует.");
   }
 
   console.log("priorityLanguage: ", priorityLanguage);

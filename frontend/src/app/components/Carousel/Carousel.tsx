@@ -165,8 +165,8 @@ export function Carousel({
             >
               {
                 images?.length > 0 && images.map((img, idx) => {
-                  // const paint = img.Paint?.formats?.large ?? img.Paint;
-                  const paint = img.Paint;
+                  const paint = img.Paint?.formats?.large ?? img.Paint?.formats?.medium ?? img.Paint;
+                  // const paint = img.Paint;
                   return (
                     <SwiperSlide
                       key={img?.id}
