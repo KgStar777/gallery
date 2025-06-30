@@ -14,9 +14,11 @@ export function BackgroundVideo({
         poster={getStrapiURL(data?.preloader.url)}
         className="border-none top-0 overflow-hidden object-cover w-full xl:px-[7%]"
         muted
-        autoPlay={!isMobile}
-        loop={!isMobile}
-        // playsInline
+        // autoPlay={!isMobile}
+        autoPlay
+        loop
+        // loop={!isMobile}
+        playsInline={isMobile}
       >
         {/* <source src={getStrapiURL(data.video.url)} type="video/mp4" /> */}
         {/* <source src={getStrapiURL(data.video.url)} type="video/mp4" /> */}
