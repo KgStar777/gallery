@@ -59,6 +59,14 @@ const meta: {
       title: "Alena Sycheva online gallery",
       description: "Gallery. Main page",
     },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/icon.png', type: 'image/png' }
+      ],
+      shortcut: '/favicon.ico',
+      apple: '/icon.png',
+    },
   },
 }
 

@@ -7,6 +7,7 @@ import { Pagination, Zoom } from 'swiper/modules';
 
 import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
+import { Virtual } from 'swiper/modules';
 // import { PaintCuption } from '@/app/components/PaintCaption';
 
 import "swiper/css";
@@ -159,9 +160,10 @@ export function Carousel({
               onSlideChange={(s) => {
                 setCurrentImgId(s.activeIndex)
               }}
-              modules={[Pagination, Zoom]}
+              modules={[Pagination, Zoom, Virtual]}
               initialSlide={currentImgId}
               slidesPerView={1}
+              virtual
             >
               {
                 images?.length > 0 && images.map((img, idx) => {
@@ -169,6 +171,7 @@ export function Carousel({
                   // const paint = img.Paint;
                   return (
                     <SwiperSlide
+                      virtualIndex={idx}
                       key={img?.id}
                     >
                       <article className={`carousel-component__wrapper`}>
@@ -181,6 +184,8 @@ export function Carousel({
                             height={paint?.height}
                             loading="lazy"
                             className={`h-full w-full max-w-full`}
+                            placeholder="blur"
+                            blurDataURL={getStrapiURL( img.Paint?.formats?.thumbnail?.url ?? img.Paint?.formats?.small?.url ?? img.Paint?.formats?.medium?.url ?? paint.url)}
                           />
                         </div>
                         <div className="carousel-info-mobile text-center">
@@ -213,19 +218,20 @@ export function Carousel({
               }}
               slidePrevClass="custom-prev"
               slideNextClass="custom-bext"
-              modules={[Zoom]}
+              modules={[Zoom, Virtual]}
               onSlideChange={(s) => {
                 setCurrentImgId(s.activeIndex)
               }}
               initialSlide={currentImgId}
               slidesPerView={1}
+              virtual
             >{
                 images?.length > 0 && images.map((img, idx) => {
                   const paint = img.Paint?.formats?.large ?? img.Paint;
 
                   return (
                     <>
-                      <SwiperSlide key={img?.id}>
+                      <SwiperSlide key={img?.id} virtualIndex={idx}>
                         <article
                           className={isFullScreen ? "carousel-component__wrapper-fullscreen" : `carousel-component__wrapper`}
                         >
@@ -250,6 +256,8 @@ export function Carousel({
                               width={paint?.width}
                               height={paint?.height}
                               loading="lazy"
+                              placeholder="blur"
+                              blurDataURL={getStrapiURL( img.Paint?.formats?.thumbnail?.url ?? img.Paint?.formats?.small?.url ?? img.Paint?.formats?.medium?.url ?? paint.url)}
                             />
                           </div>
                           {!isFullScreen && (

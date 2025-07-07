@@ -17,12 +17,12 @@ export function ContactsInfo({
   return (
     <Fragment>
       <section className="contacts-section">
-          <div className="contacts-info">
+          <div className="contacts-info dark:text-zinc-600">
             <h1>{data.title}</h1>
-            <p className="font-light text-xs">
+            <p className="font-light text-xs dark:text-zinc-600">
               <Link href={`tel:${data.phone}`}>{data.phone}</Link>
             </p>
-            <p className="font-light text-sm font-sans">
+            <p className="font-light text-sm font-sans dark:text-zinc-600">
               <Link href={`mailto:${data.email}`}>{data.email}</Link>
             </p>
           </div>

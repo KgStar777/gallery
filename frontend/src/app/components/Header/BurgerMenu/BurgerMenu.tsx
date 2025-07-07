@@ -35,11 +35,17 @@ export function BurgerMenu(props: IBurgerMenuProps) {
 
     return (
       <Fragment>
-        <Hamburger color="black" toggled={isOpen} toggle={burgerHandelr} />
+        <Hamburger color={
+          window?.matchMedia('(prefers-color-scheme: dark)')?.matches
+            ? "white"
+            : "black"
+          // "black"
+          } toggled={isOpen} toggle={burgerHandelr}
+        />
         {
           isOpen && (
             <nav
-              className="burger-menu__mobile h-dvh"
+              className="burger-menu__mobile h-dvh bg-white dark:bg-[#b4b4b4]"
               role="menu"
               aria-orientation="vertical"
             >

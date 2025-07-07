@@ -73,10 +73,10 @@ export async function MainPage({
                   alt="authors photo"
                 />
               </div>
-              <p className={`${caveat.className} text-zinc-700 text-2xl italic font-light`}>{info.italic}</p>
+              <p className={`${caveat.className} text-zinc-700 text-2xl italic font-light dark:text-white`}>{info.italic}</p>
               <hr />
-              <p className={"font-sans text-lg text-zinc-700 font-light"}>{info.article1}</p>
-              <p className="font-sans text-lg text-zinc-700 font-light">{info.article2}</p>
+              <p className={"font-sans text-lg text-zinc-700 font-light dark:text-white"}>{info.article1}</p>
+              <p className="font-sans text-lg text-zinc-700 font-light dark:text-white">{info.article2}</p>
               <div className="w-full flex items-center justify-center">
                 {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                 {/* <SubmitButton id="scroll-button" type="button">

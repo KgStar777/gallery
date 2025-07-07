@@ -51,7 +51,7 @@ export default async function Exhibitions() {
                 .split("\n")
                 .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
                 .map((d, idx) => (
-                  <p key={idx} className="font-light mb-3 font-sans text-lg">{d}</p>
+                  <p key={idx} className="font-light mb-3 font-sans text-lg text-zinc-600">{d}</p>
                 )
               )}
             </div>
