@@ -20,12 +20,12 @@ const meta: {
     description: "Галерея. Карусель",
     keywords: getKeywordsRu(),
     alternates: {
-      canonical: process.env.NEXT_PUBLIC_API_URL,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/ru/gallery`,
     },
     openGraph: {
       title: "Художественная онлайн-галерея Алёны Сычёвой",
       description: "Галерея. Карусель",
-      url: process.env.NEXT_PUBLIC_API_URL,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/ru/gallery`,
       siteName: "Художественная онлайн-галерея Алёны Сычёвой",
       type: "website",
       locale: "ru_RU",
@@ -42,12 +42,12 @@ const meta: {
     description: "Gallery. Slider",
     keywords: getKeywordsEn(),
     alternates: {
-      canonical: process.env.NEXT_PUBLIC_API_URL,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/en/gallery`,
     },
     openGraph: {
       title: "Alena Sycheva online gallery",
       description: "Gallery. Slider",
-      url: process.env.NEXT_PUBLIC_API_URL,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/en/gallery`,
       siteName: "Alena Sycheva online gallery",
       type: "website",
       locale: "en_US",
@@ -65,7 +65,7 @@ export async function generateMetadata({
   searchParams
 }: { searchParams: { id: string, name: string }}
 ): Promise<Metadata> {
-  const { priorityLanguage, mobileCheck } = useHeaders();
+  const { priorityLanguage } = useHeaders();
 
   const data = meta[priorityLanguage];
   const images: Array<ImageGalleryModel> = await getImages({ language: priorityLanguage });
@@ -75,7 +75,7 @@ export async function generateMetadata({
     .replace(/ /g, "-") === searchParams?.name);
     const currentIdx = idx !== -1 ? idx : 0;
 
-    const mutateData = {
+    return {
       ...data,
       twitter: {
         ...data.twitter,
@@ -96,8 +96,6 @@ export async function generateMetadata({
         icon: '/icon.png',
       },
     }
-  
-  return mutateData;
 }
 
 export const revalidate = 60;

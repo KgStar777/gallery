@@ -21,12 +21,12 @@ const meta: {
     description: "Галерея. Главная страница",
      keywords: getKeywordsRu(),
     alternates: {
-      canonical: process.env.NEXT_PUBLIC_API_URL,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/ru`,
     },
     openGraph: {
       title: "Художественная онлайн-галерея Алёны Сычёвой",
       description: "Галерея. Главная страница",
-      url: process.env.NEXT_PUBLIC_API_URL,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/ru`,
       siteName: "Художественная онлайн-галерея Алёны Сычёвой",
       type: "website",
       locale: "ru_RU",
@@ -43,12 +43,12 @@ const meta: {
     description: "Gallery. Main page",
     keywords: getKeywordsEn(),
     alternates: {
-      canonical: process.env.NEXT_PUBLIC_API_URL,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/en`,
     },
     openGraph: {
       title: "Alena Sycheva online gallery",
       description: "Gallery. Main page",
-      url: process.env.NEXT_PUBLIC_API_URL,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/en`,
       siteName: "Alena Sycheva online gallery",
       type: "website",
       locale: "en_US",

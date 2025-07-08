@@ -15,12 +15,12 @@ const meta: { [key: string]: Metadata } = {
     description: "Галерея. Биография",
     keywords: getKeywordsRu(),
     alternates: {
-      canonical: process.env.NEXT_API_URL,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/ru/biography`,
     },
     openGraph: {
       title: "Художественная онлайн-галерея Алёны Сычёвой",
       description: "Галерея. Главная страница",
-      url: process.env.NEXT_API_URL,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/ru/biography`,
       siteName: "Художественная онлайн-галерея Алёны Сычёвой",
       type: "website",
       locale: "ru_RU",
@@ -37,12 +37,12 @@ const meta: { [key: string]: Metadata } = {
     description: "Gallery. Biography",
     keywords: getKeywordsEn(),
     alternates: {
-      canonical: process.env.NEXT_API_URL,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/en/biography`,
     },
     openGraph: {
       title: "Alena Sycheva online gallery",
       description: "Gallery. Main page",
-      url: process.env.NEXT_API_URL,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/en/biography`,
       siteName: "Alena Sycheva online gallery",
       type: "website",
       locale: "en_US",
