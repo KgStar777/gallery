@@ -189,8 +189,8 @@ export function Carousel({
                           />
                         </div>
                         <div className="carousel-info-mobile text-center">
-                          <h2 className="font-light text-lg md:text-lg lg:text-xl">{img.Title}</h2>
-                          <p className="font-light text-zinc-700 text-lg font-sans">{img.Description[0].children[0].text}</p>
+                          <h2 className="font-light text-lg md:text-lg lg:text-xl dark:text-white">{img.Title}</h2>
+                          <p className="font-light text-zinc-700 text-lg font-sans dark:text-white">{img.Description[0].children[0].text}</p>
                         </div>
                       </article>
                     </SwiperSlide>
@@ -264,8 +264,8 @@ export function Carousel({
                             <div onMouseEnter={e => console.log("onMouseEnter")} className="carousel-info text-center">
                               <h2 className="font-light text-lg md:text-lg lg:text-xl">{img?.Title}</h2>
                               {/* <PaintCuption caption={img?.Description[0].children[0].text} /> */}
-                              <p className="text-zinc-700 font-light font-sans text-xl">{img?.Description[0].children[0].text}</p>
-                              <p className="text-zinc-700 font-light font-sans text-xl mt-2">{img?.About?.[0]?.children[0].text}</p>
+                              <p className="text-zinc-700 font-light font-sans text-xl dark:text-white">{img?.Description[0].children[0].text}</p>
+                              <p className="text-zinc-700 font-light font-sans text-l mt-2 dark:text-white">{img?.About?.[0]?.children[0].text}</p>
                             </div>
                           )}
                         </article>

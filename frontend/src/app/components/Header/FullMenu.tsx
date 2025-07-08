@@ -20,11 +20,11 @@ export function FullMenu(props: IFullMenuProps) {
   useHandleContextMenu();
 
   return (
-    <nav className="navigation-panel">
+    <nav className="navigation-panel bg-[#F1F1F1] dark:bg-[#585a5c]">
       <ul>
         {props.links?.map((link, idx) => (
           <li key={idx}>
-            <Link className={isActiveLink(`/${props.priorityLanguage}${link.path}`) ? 'active' : ''} href={`/${props.priorityLanguage}/${link.path}`}>{
+            <Link className={isActiveLink(`/${props.priorityLanguage}${link.path}`) ? 'active' : 'text-black dark:text-white'} href={`/${props.priorityLanguage}/${link.path}`}>{
               props.priorityLanguage === "ru"
               ? link.ru
               : link.en

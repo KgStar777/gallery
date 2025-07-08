@@ -175,7 +175,7 @@ export default async function RootLayout({
   return (
     <html lang={priorityLanguage}>
         {/* <UserContextProvider> */}
-          <body className={`bg-white text-black dark:bg-[#b4b4b4] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
+          <body className={`bg-white text-black dark:bg-[#292929] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800 relative`}>
           <ToastContainer
             autoClose={3000}
             position={"bottom-right"}

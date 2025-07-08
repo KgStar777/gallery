@@ -45,7 +45,7 @@ export function BurgerMenu(props: IBurgerMenuProps) {
         {
           isOpen && (
             <nav
-              className="burger-menu__mobile h-dvh bg-white dark:bg-[#b4b4b4]"
+              className="burger-menu__mobile h-dvh bg-white dark:bg-[#292929]"
               role="menu"
               aria-orientation="vertical"
             >
@@ -55,7 +55,7 @@ export function BurgerMenu(props: IBurgerMenuProps) {
                     document.getElementsByTagName("body")?.[0]?.classList.remove("overflow-hidden");
                   }}
                   key={idx}
-                  className={isActiveLink(`/${props.priorityLanguage}${link.path}`) ? 'active uppercase' : 'uppercase'}
+                  className={isActiveLink(`/${props.priorityLanguage}${link.path}`) ? 'active uppercase' : 'uppercase dark:text-white'}
                   href={`/${props.priorityLanguage}/${link.path}`}
                 >{
                   props.priorityLanguage === "ru"

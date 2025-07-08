@@ -27,15 +27,15 @@ export default async function Exhibitions() {
           const isReverse = index % 2 === 0
           if (mobileCheck) {
             return (
-              <div key={index} className={`flex w-full h-full mt-[1.7rem] flex bg-[#F1F1F1] p-4 justify-center items-center`}>
-                {<h4 className={`${isReverse ? "" : ""} text-center absolute font-bold text-zinc-300 text-9xl sm:text-lg md:text-xl min-w-[30%] max-w-[fit-content] flex`}>{ex.year.replace("-", "")}</h4>}
+              <div key={index} className={`flex w-full h-full mt-[1.7rem] flex bg-[#F1F1F1] p-4 justify-center items-center dark:bg-[#585a5c]`}>
+                {<h4 className={`${isReverse ? "" : ""} text-center absolute font-bold text-zinc-300 text-9xl sm:text-lg md:text-xl min-w-[30%] max-w-[fit-content] flex text-[#292929]`}>{ex.year.replace("-", "")}</h4>}
                 <div className="z-[10] flex flex-col min-w-[40%] justify-center items-start text-zinc-900">
                   {(ex?.description as string)
                     .split("\n")
                     .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
                     .map((d, idx) => (
                       // <p key={idx} className="font-light text-sm mb-1">{d}</p>
-                      <p key={idx} className="text-zinc-600 mb-3 font-sans text-lg">{d}</p>
+                      <p key={idx} className="text-zinc-600 mb-3 font-sans text-lg dark:text-white">{d}</p>
                     )
                   )}
                 </div>
@@ -44,14 +44,14 @@ export default async function Exhibitions() {
           }
 
         return (
-          <div key={index} className={`mt-[1.7rem] flex bg-[#F1F1F1] justify-between items-between p-4 ${isReverse ? "flex-row" : "flex-row-reverse"}`}>
+          <div key={index} className={`mt-[1.7rem] flex bg-[#F1F1F1] justify-between items-between p-4 dark:bg-[#585a5c] ${isReverse ? "flex-row" : "flex-row-reverse"}`}>
             {<h4 className={"text-center font-bold text-zinc-300 text-9xl mb-[.7rem] min-w-[30%] max-w-[40%] flex items-center justify-around"}>{ex.year.replace("-", "")}</h4>}
             <div className="flex flex-col min-w-[38%] w-full justify-center items-start p-3">
               {(ex?.description as string)
                 .split("\n")
                 .filter((d) => !isEmpty((d as string).replace(/\s/g, '')))
                 .map((d, idx) => (
-                  <p key={idx} className="font-light mb-3 font-sans text-lg text-zinc-600">{d}</p>
+                  <p key={idx} className="font-light mb-3 font-sans text-lg text-zinc-600 dark:text-white">{d}</p>
                 )
               )}
             </div>

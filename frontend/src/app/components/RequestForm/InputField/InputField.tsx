@@ -24,7 +24,7 @@ export function InputField(
   return (
     <div className="inputField__wrapper">
       <input
-        className="inputField"
+        className="inputField dark:bg-[#585a5c] dark:text-white"
         maxLength={100}
         {...register(name)}
         {...props}

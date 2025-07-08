@@ -20,7 +20,7 @@ export function TextareaField(
   return (
     <div className="textareaField__wrapper">
       <textarea
-        className="textarea-field"
+        className="textarea-field dark:bg-[#585a5c] dark:text-white"
         rows={4}
         maxLength={1000}
         {...props}

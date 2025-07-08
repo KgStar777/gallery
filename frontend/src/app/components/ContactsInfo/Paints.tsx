@@ -1,15 +1,15 @@
 import Image from "next/image"
 import { ContactsInfoModel } from "@/app/models/ImageGalleryModel"
 import { getStrapiURL } from "@/app/utils/api-helpers"
+import { useHeaders } from "@/app/hooks/useHeaders";
 
 export function Paints({
     paints,
-    isMobile
 }: {
   paints: ContactsInfoModel,
-  isMobile: boolean,
 }) {
-  if (isMobile) {
+  const { mobileCheck } = useHeaders();
+  if (mobileCheck) {
     return (
       <div className="paints-interiors__paints-mobile">
         {paints.paints.map((paint, idx) => {

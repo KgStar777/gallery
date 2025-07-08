@@ -96,7 +96,7 @@ export async function MainPage({
     const image = info.authorImg.formats?.large ?? info.authorImg;
     return (
         <Fragment>
-            <section className="main-page">
+            <section className="main-page bg-[#F1F1F1] dark:bg-[#585a5c]">
                 <div className="main-page__author">
                     <Image
                         width={image.width}
@@ -107,13 +107,13 @@ export async function MainPage({
                 </div>
                 <div className="main-content">
                     {priorityLanguage === "ru"
-                        ? <h1 className={"text-zinc-900 font-black font-serif"}>Портфолио</h1>
-                        : <h1 className={"text-zinc-900 font-black font-serif"}>Portfolio</h1>
+                        ? <h1 className={"text-zinc-900 font-black font-serif dark:text-white"}>Портфолио</h1>
+                        : <h1 className={"text-zinc-900 font-black font-serif dark:text-white"}>Portfolio</h1>
                     }
-                    <p className={`${caveat.className} text-zinc-600 text-2xl font-light font-sans`}>{info.italic}</p>                    
+                    <p className={`${caveat.className} text-zinc-600 text-2xl font-light font-sans dark:text-white`}>{info.italic}</p>                    
                     <hr />
-                    <p className="text-zinc-600 font-sans text-lg font-light">{info.article1}</p>
-                    <p className="text-zinc-600 font-sans text-lg font-light">{info.article2}</p>
+                    <p className="text-zinc-600 font-sans text-lg font-light dark:text-white">{info.article1}</p>
+                    <p className="text-zinc-600 font-sans text-lg font-light dark:text-white">{info.article2}</p>
                     {/* <SubmitButton id="scroll-button" type="button" onClick={() => scrollToSection("request-form")}> */}
                     {/* <SubmitButton id="scroll-button" type="button">
                         <p className="uppercase">получить сюжеты</p>
