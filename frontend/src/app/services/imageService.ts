@@ -34,11 +34,13 @@ export async function getImages({
 }
 
 export async function getImage({
-  id
+  id,
+  language
 }: {
   id: string
+  language: string
 }) {
-  let data = await fetch(getStrapiURL(`/api/paint-images/${id}?populate=*`))
+  let data = await fetch(getStrapiURL(`/api/paint-images/${id}?locale=${language}&populate=*`))
   let paints = await data.json()
   
   return paints.data;
@@ -49,6 +51,7 @@ export async function getContanctsPageInfo({
 }: {
   language?: string
 }) {
+  // params?
   let data = await fetch(getStrapiURL(`/api/contancts-page/?locale=${language}&populate=*`))
   let contacts = await data.json()
   

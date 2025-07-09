@@ -5,20 +5,24 @@ import Image from 'next/image';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination, Zoom } from 'swiper/modules';
 
-import { ImageGalleryModel } from '@/app/models/ImageGalleryModel';
+import { ImageGalleryModel, PaintFormats } from '@/app/models/ImageGalleryModel';
 import { getStrapiURL } from '@/app/utils/api-helpers';
 import { Virtual } from 'swiper/modules';
 // import { PaintCuption } from '@/app/components/PaintCaption';
 
 import "swiper/css";
 import "swiper/css/zoom";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+// import LangSelect from '../Header/LangSelect';
 
 interface ICarouselProps {
   images: Array<ImageGalleryModel>,
   isMobile?: boolean,
   navigationHeader?: ReactNode,
   currentIdx: number,
-  isFullScreen?: boolean
+  isFullScreen?: boolean;
+  priorityLanguage: string;
 }
 
 const responsive = {
@@ -46,11 +50,13 @@ export function Carousel({
   isMobile,
   navigationHeader,
   isFullScreen,
+  priorityLanguage,
   ...props
 }: ICarouselProps) {
   if (!images) {
     return null
   }
+
   const [currentImgId, setCurrentImgId] = useState(props.currentIdx);
   const [zoomEnabled, setZoomEnabled] = useState(false);
   // const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -58,7 +64,7 @@ export function Carousel({
   // const zoomRef = useRef<SwiperRef>(null);
   const zoomContainerRef = useRef(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-
+  
   // Переход к следующему слайду
   const goNext = useCallback(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -185,12 +191,18 @@ export function Carousel({
                             loading="lazy"
                             className={`h-full w-full max-w-full`}
                             placeholder="blur"
-                            blurDataURL={getStrapiURL( img.Paint?.formats?.thumbnail?.url ?? img.Paint?.formats?.small?.url ?? img.Paint?.formats?.medium?.url ?? paint.url)}
+                            blurDataURL={getStrapiURL(img.Paint?.formats?.thumbnail?.url ?? img.Paint?.formats?.small?.url ?? img.Paint?.formats?.medium?.url ?? paint.url)}
                           />
                         </div>
                         <div className="carousel-info-mobile text-center">
                           <h2 className="font-light text-lg md:text-lg lg:text-xl dark:text-white">{img.Title}</h2>
                           <p className="font-light text-zinc-700 text-lg font-sans dark:text-white">{img.Description[0].children[0].text}</p>
+                          {/* ---------------------- */}
+                          <Link
+                            draggable="false"
+                            href={`/${priorityLanguage}/gallery/buy?q=${img.documentId}`}
+                          ></Link>
+                          {/* ---------------------- */}
                         </div>
                       </article>
                     </SwiperSlide>
@@ -266,6 +278,12 @@ export function Carousel({
                               {/* <PaintCuption caption={img?.Description[0].children[0].text} /> */}
                               <p className="text-zinc-700 font-light font-sans text-xl dark:text-white">{img?.Description[0].children[0].text}</p>
                               <p className="text-zinc-700 font-light font-sans text-l mt-2 dark:text-white">{img?.About?.[0]?.children[0].text}</p>
+                              {/* ----------buy--------- */}
+                              <Link
+                                  draggable="false"
+                                  href={`/${priorityLanguage}/gallery/buy?q=${img.documentId}`}
+                              ></Link>
+                              {/* ---------------------- */}
                             </div>
                           )}
                         </article>

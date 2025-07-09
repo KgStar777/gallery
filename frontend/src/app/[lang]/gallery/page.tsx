@@ -5,11 +5,11 @@ import { CarouselWrapper } from "@/app/components/Carousel/CarouselWrapper";
 import { useHeaders } from "@/app/hooks/useHeaders";
 import { getStrapiURL } from "@/app/utils/api-helpers";
 import { ImageGalleryModel } from "@/app/models/ImageGalleryModel";
+import { getKeywordsEn, getKeywordsRu } from "@/app/utils/keywords";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { getKeywordsEn, getKeywordsRu } from "@/app/utils/keywords";
 
 
 const meta: {

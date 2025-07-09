@@ -1,11 +1,7 @@
 "use client"
-// import { getImages } from "@/app/services/imageService";
+
 import { Carousel } from "@/app/components/Carousel";
-// import { headers } from 'next/headers';
-// import { isMobile } from '@/app/utils/isMobile';
 import { CarouselHeader } from "@/app/components/Carousel/CarouselHeader";
-// import { getProprityLanguages } from "@/app/utils/getProprityLanguages";
-// import { Metadata, ResolvingMetadata } from "next";
 import { ImageGalleryModel } from "@/app/models/ImageGalleryModel";
 import { useState } from "react";
 
@@ -32,6 +28,7 @@ export function CarouselWrapper({
       currentIdx={currentIdx}
       isMobile={isMobile}
       images={images}
+      priorityLanguage={priorityLanguage}
       navigationHeader={(
         <CarouselHeader
           onFullScreenChange={onFullScreenChange}
